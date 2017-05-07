@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <include file="Public:head" />
+</head>
+<body class="gray-bg" onload="document.form[0].reset()">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 class="location">左侧导航设置</h5>&nbsp;&nbsp;<a href="{:u(CONTROLLER_NAME . '/left_menu_add')}" class="e9">[新建]</a>
+                    <div class="ibox-tools">
+                        <form method="post">
+                            <input type="text" name="search_val" id="search_val" placeholder="名称/链接/图标/参数"/>
+                            <button type="submit">搜索</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <nav class="navbar-default navbar-static-side" role="navigation">
+                        <div class="nav-close"><i class="fa fa-times-circle"></i>
+                        </div>
+                        <div class="sidebar-collapse2">
+                            <!--搜索菜单输出-----开始-->
+                            <if condition="$res eq 1">
+                            <ul class="nav nav-second-l  evel">
+                                <volist name="menus" id="vs">
+                                        <li style="margin-bottom: 10px">
+                                            <div class="left">
+                                                <input type="text" id="name_{$vs.id}" value="{$vs.name}"/>
+                                                <span class="nav-label">链接：<input class="w200" type="text" id="path_{$vs.id}" value="{$vs.path}"/></span>
+                                                <span class="nav-label"><input class="w200" type="hidden" id="icon_{$vs.id}" value=""/></span>
+                                                <span class="nav-label">图标：<input class="w200" type="text" id="icon_{$vs.id}" value="{$vs.icon}"/></span>
+                                                <span class="nav-label">排序：<input class="w40" type="text" id="sort_{$vs.id}" value="{$vs.sort}"/></span>
+                                            </div>
+                                            <div class="left">&nbsp
+                                                <span class="e9" onclick="javascript:switchs('update','{$vs.id}','{$vs.status}');">[更新]</span>
+                                                <if condition="$vs.status eq 1">
+                                                    <span class="e9" onclick="javascript:switchs('update','{$vs.id}','2');">[禁用]</span>
+                                                <else/>
+                                                    <span class="e9" onclick="javascript:switchs('update','{$vs.id}','1');">[启用]</span>
+                                                </if>
+                                                <span class="e9" onclick="javascript:switchs('del','{$vs.id}','{$vs.status}');">[删除]</span>
+                                            </div>
+                                            <div style="clear: both;border-bottom: solid 1px #ccc;"></div>
+                                        </li>
+                                </volist>
+                            </ul>
+                            <!--搜索菜单输出-----结束-->
+                            <else/>
+                            <ul class="nav" id="side-menu">
+                                <!--1级菜单输出-----开始-->
+                                <volist name="menus" id="vo">
+                                    <if condition="$vo.parent_id eq 0">
+                                    <li <if condition="$vo.status eq 2"> style="border: 1px solid #ff0000"</if>>
+                                        <div class="shebs">
+                                        <if condition="$vo.parent_id eq 0">
+                                            <i class="{$vo.icon}"></i><span class="e9">&nbsp;[{$vo.id}]</span>
+                                                <span class="nav-label"><input type="text" id="name_{$vo.id}" value="{$vo.name}"/> </span>
+                                                <span class="nav-label">图标：<input class="w200" type="text" id="icon_{$vo.id}" value="{$vo.icon}"/></span>
+                                                <span class="nav-label">排序：<input style="width: 50px;" type="text" id="sort_{$vo.id}" value="{$vo.sort}"/></span>
+                                               <!-- <span class="fa arrow"></span>-->
+                                                <div style="float: right;margin-right: 20px">
+                                                    <div class="left">
+                                                        <span class="e9" onclick="javascript:switchs('update','{$vo.id}','{$vo.status}');">[更新]</span>
+                                                        <if condition="$vo.status eq 1">
+                                                            <span class="e9" onclick="javascript:switchs('update','{$vo.id}','2');">[禁用]</span>
+                                                        <elseif condition="$vo.status eq 2" />
+                                                            <span class="e9" onclick="javascript:switchs('update','{$vo.id}','1');">[启用]</span>
+                                                        <elseif condition="$vo.status eq 0" />
+                                                            <span class="e9" onclick="javascript:switchs('update','{$vo.id}','0');">[开发]</span>
+                                                        </if>
+                                                        <span class="e9" onclick="javascript:switchs('del','{$vo.id}','{$vo.status}');">[删除]</span>
+                                                    </div>
+                                                </div>
+                                        </if>
+                                        </div>
+                                        <!--2级菜单输出-----开始-->
+                                        <ul class="nav nav-second-level">
+                                            <volist name="menus" id="vo1">
+                                                <eq name="vo1.parent_id" value="$vo.id">
+                                                    <li style="border-left: none;border-right: none;padding-left: 48px;">
+                                                        <div class="left"><span class="e9">[{$vo1.id}]</span>
+                                                            <input type="text" id="name_{$vo1.id}" value="{$vo1.name}"/>
+                                                            <span class="nav-label">链接：<input class="w200" type="text" id="path_{$vo1.id}" value="{$vo1.path}"/></span>
+                                                            <span class="nav-label"><input class="w200" type="hidden" id="icon_{$vo1.id}" value=""/> </span>
+                                                            <span class="nav-label">排序：<input class="w40" type="text" id="sort_{$vo1.id}" value="{$vo1.sort}"/></span>
+                                                        </div>
+                                                        <div class="left">&nbsp;
+                                                            <span class="e9" onclick="javascript:switchs('update','{$vo1.id}','{$vo1.status}');">[更新]</span>&nbsp;
+                                                            <if condition="$vo1.status eq 1">
+                                                            <span class="e9" onclick="javascript:switchs('update','{$vo1.id}','2');">[禁用]</span>&nbsp;
+                                                            <else/>
+                                                            <span class="e9" onclick="javascript:switchs('update','{$vo1.id}','1');">[启用]</span>&nbsp;
+                                                            </if>
+                                                            <span class="e9" onclick="javascript:switchs('del','{$vo1.id}','{$vo1.status}');">[删除]</span>&nbsp;
+                                                            <a href="{:u(CONTROLLER_NAME . '/left_menu_add',array('parent_id'=>$vo1['id']))}" style="padding: 0;color:#00c006">[新建下级]</a>&nbsp;
+                                                            <a href="{:u(CONTROLLER_NAME . '/left_classify_modify',array('id'=>$vo1['id']))}" style="padding: 0;color:#00c006">[编辑]</a>&nbsp;
+                                                        </div>
+
+                                                        <div style="clear: both;border-bottom: solid 1px #ccc;"></div>
+                                                        <!--3级菜单输出-----开始-->
+                                                        <volist name="menus" id="vo2">
+                                                            <eq name="vo2.parent_id" value="$vo1.id">
+                                                            <div class="left" style="padding: 0 0 0 18px;margin-top: -2px;"><span class="e9">[{$vo2.id}]</span>
+                                                                <input type="text" id="name_{$vo2.id}" value="{$vo2.name}"/>
+                                                                <span class="nav-label">链接：<input class="w200" type="text" id="path_{$vo2.id}" value="{$vo2.path}"/></span>
+                                                                <span class="nav-label"><input class="w200" type="hidden" id="icon_{$vo2.id}" value=""/></span>
+                                                                <span class="nav-label">排序：<input class="w40" type="text" id="sort_{$vo2.id}" value="{$vo2.sort}"/></span>
+                                                            </div>
+                                                                <div class="left">&nbsp;
+                                                                    <span class="e9" onclick="javascript:switchs('update','{$vo2.id}','{$vo1.status}');">[更新]</span>&nbsp;
+                                                                    <if condition="$vo2.status eq 1">
+                                                                        <span class="e9" onclick="javascript:switchs('update','{$vo2.id}','2');">[禁用]</span>&nbsp;
+                                                                    <else/>
+                                                                        <span class="e9" onclick="javascript:switchs('update','{$vo2.id}','1');">[启用]</span>&nbsp;
+                                                                    </if>
+                                                                    <span class="e9" onclick="javascript:switchs('del','{$vo2.id}','{$vo1.status}');">[删除]</span>&nbsp;
+                                                                    <!--<a href="{:u(CONTROLLER_NAME . '/left_menu_add',array('parent_id'=>$vo1['id']))}" style="padding: 0;">[新建下级]</a>&nbsp;
+                                                                    <a href="{:u(CONTROLLER_NAME . '/left_classify_modify',array('id'=>$vo1['id']))}" style="padding: 0;">[更多]</a>&nbsp;-->
+                                                                </div>
+                                                                <div style="clear: both"></div>
+                                                            </eq>
+                                                        </volist>
+                                                        <!--3级菜单输出-----结束-->
+                                                        <div style="clear: both;height:5px;"></div>
+                                                    </li>
+                                                </eq>
+                                            </volist>
+                                        </ul>
+                                        <!--2级菜单输出-----结束-->
+                                    </li><br>
+                                    </if>
+                                </volist>
+                                <!--1级菜单输出-----结束-->
+                            </ul>
+                            </if>
+                        </div>
+                    </nav>
+                </div>
+        </div>
+    </div>
+    </div>
+</div>
+<input type="hidden" id="search_" value="{$res}"/>
+<script>
+    $search_ = $("#search_").val();
+    if($search_ == 2){
+        toastr.error("未查找到包含该关键字的数据！");
+        setTimeout("location.href='{:u('Basic/left_menu')}'","1500");
+    }
+    function switchs(tag,id,status){
+        var name = $("#name_"+id).val();
+        var icon = $("#icon_"+id).val();
+        var path = $("#path_"+id).val();
+        var sort = $("#sort_"+id).val();
+        if(tag == "del"){
+            if (confirm("确定要删除吗？")){
+            }else{
+                return false;
+            }
+        }
+            $.ajax({
+            url:"{:U('Basic/switchs')}",
+            type:"POST",
+            dataType:"json",
+            data:"tag="+tag+"&id="+id+"&name="+name+"&icon="+icon+"&path="+path+"&status="+status+"&sort="+sort,
+            success:function(res){
+                if(res.res == 'success'){
+                    toastr.success("操作成功！");
+                    setTimeout("location.reload();","1500");
+                }else{
+                    toastr.error("操作失败！");
+                }
+            }
+        });
+    }
+</script>
+<style>
+    .shebs{padding: 15px;}
+    .shebs input{border: 1px solid #00a0e9}
+    .left{float:left;margin-top:-1px;}
+    .right{float:right}
+    .navbar-default .nav>li>a:focus, .navbar-default .nav>li>a:hover{background-color: #fff;  color: #000000;}
+    button, input, optgroup, select, textarea{color: #000;}
+    .navbar-static-side{background: none;}
+    .nav>li.active>a{color: #000000;}
+    .nav>li{border: 1px solid #ccc;}
+    .nav-second-level li:last-child{margin: 0}
+    .nav>li.active{background: none;border-left: 5px solid #00a0e9;}
+    .nav>li:hover{background:none;}
+    .e9{color:#00a0e9;}
+    .w40{width: 40px;}
+    .w100{width: 100px;}
+    .w200{width: 200px;}
+    .e9s{color:#00a0e9;padding: 0;}
+</style>
+</body>
+</html>

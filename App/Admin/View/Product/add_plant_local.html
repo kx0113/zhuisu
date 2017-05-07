@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <include file="Product:nav" />
+                    <div class="ibox-title">
+                        <a href="{:u('Admin/Product/index_plant',array('m'=>plant,'product_id'=>$_GET['product_id']))}">  <h5>返回列表</h5></a>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="id" name="id"  type="hidden" value="{$product.plant_id}">
+<!--                             <div class="hr-line-dashed"></div>
+                            设备信息
+                            <div class="hr-line-dashed"></div> -->
+                            <!--<div class="form-group">-->
+                                <!--<label class="col-sm-2 control-label">图片日期</label>-->
+                                <!--<div class="col-sm-10">-->
+                                    <!--<div class="input-group">-->
+                                    	<!--<input type="date" name="subst_time" style="width:350px;" required/>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <script src="_js_/plugins/layer/laydate/laydate.js"></script>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">图片日期：</label>
+                                <div class="col-sm-10">
+                                    <input name="subst_time" value="{$product.subst_time}" id="subst_time" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                    <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                    <label class="laydate-icon"></label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">时期</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <select id="stage" name="stage" data-placeholder="请选择时期..." class="chosen-select" style="width:350px;" tabindex="2">
+                                            <option value="">请选择时期</option>
+                                            <volist name="Stage_list" id="vo">
+                                                <option <if condition="$vo['stage_id'] eq $product['stage']"> selected="selected" </if> value="{$vo.stage_id}">{$vo.stage_name}</option>
+                                            </volist>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">选择照片</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                    	<input type="file" name="pic" style="width:350px;"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <if condition="$product.pic neq ''">
+                                            <img src="/{$product.pic}" style="width:150px;"/>
+                                        </if>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button type="submit" class="btn btn-primary" onclick="T_submit();">提交</button>
+                                    <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.area_source.value==''){
+            toastr.error("请选择区域！");
+            form.area_source.focus();
+            return false;
+        }if(form.device_type.value=='') {
+            toastr.error("请选择设备类型！");
+            form.device_type.focus();
+            return false;
+        }if(form.stage.value==''){
+            toastr.error("请选择时期！");
+            form.stage.focus();
+            return false;
+        }
+        return true;
+    }
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+</body>
+</html>

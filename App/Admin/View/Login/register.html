@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{$title}</title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="_css_/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+	<link href="_css_/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+	<link href="_css_/plugins/iCheck/custom.css" rel="stylesheet">
+	<link href="_css_/animate.min.css" rel="stylesheet">
+	<link href="_css_/style.min862f.css?v=4.1.0" rel="stylesheet">
+	<script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+</head>
+<body style="height: auto;" class="gray-bg">
+<div style="padding-top: 0;" class="middle-box text-center loginscreen   animated fadeInDown">
+	<div>
+		<div>
+			<h1 class="logo-name">H+</h1>
+		</div>
+		<h3>欢迎注册新用户</h3>
+		<!--<p>创建一个新账户</p>-->
+		<form class="m-t" role="form" action="">
+			<div id="acc" class="form-group">
+				<input type="text" id="account" class="form-control" placeholder="请输入用户名" onblur="check()">
+				<div style="margin: 0;padding: 0;" class="col-sm-12">
+					<div style="line-height: 30px;text-align:left;display: none;" id="acc1">&nbsp;
+						<i style="color: #1ab394;" class="glyphicon glyphicon-ok"></i>&nbsp;
+						<span style="color:#1ab394;font-weight:bold">&nbsp;恭喜，该帐号可注册!</span>
+					</div>
+					<div style="text-align:left;line-height: 30px;display: none;" id="acc2">&nbsp;
+						<i style="color: #ed5565;" class="glyphicon glyphicon-remove"></i>&nbsp;
+						<span style="color:#ed5565;font-weight:bold">该帐号已注册!</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="text" id="real_name" class="form-control" placeholder="请输入真实姓名" >
+			</div>
+			<div class="form-group">
+				<input type="password" id="password1" class="form-control" placeholder="请输入密码" required="">
+			</div>
+			<div class="form-group">
+				<input type="password" id="password2" class="form-control" placeholder="请再次输入密码" required="">
+			</div>
+			<!--<div class="form-group text-left">
+				<div class="checkbox i-checks">
+					<label class="no-padding">
+						<input type="checkbox"><i></i> 我同意注册协议</label>
+				</div>
+			</div>-->
+			<a id="btn-register" class="btn btn-primary block full-width m-b">注 册</a>
+
+			<p class="text-muted text-center"><small>已经有账户了？</small><a href="{:u('Admin/login/login')}">点此登录</a>
+			</p>
+
+		</form>
+	</div>
+</div>
+<script src="__js__/jquery-1.11.1.min.js"></script>
+<script src="__js__/bootstrap.min.js?v=3.3.6"></script>
+<script src="_js_/plugins/iCheck/icheck.min.js"></script>
+<!--弹出通知-->
+<link href="_css_/plugins/toastr/toastr.min.css" rel="stylesheet">
+<script src="_js_/plugins/toastr/toastr.min.js"></script>
+<!--弹出通知-->
+<script>
+	$(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
+</script>
+<!--注册-->
+<script type="text/javascript">
+	//检测是否存在该帐号
+	function check(){
+		var $check = $('#account').val();
+		var checks = {
+			account: $check,
+		};
+		if (!$check) {
+			toastr.error("您没有输入用户名！");
+			return false;
+		}
+		$.post("checks", checks, function (data) {
+			if (data.result == 'no') {
+				$("#acc").removeClass("has-error");
+				$("#acc").addClass("has-success");
+				$("#acc1").show();
+				$("#acc2").hide();
+
+			} else{
+				$("#acc").removeClass("has-success");
+				$("#acc").addClass("has-error");
+				$("#acc2").show();
+				$("#acc1").hide();
+			}
+		}, "json");
+	}
+	$(function () {
+		document.onkeydown = function (event) {
+			var theEvent = window.event || event;
+			var code = theEvent.keyCode || theEvent.which;
+			if (code == 13) {
+				register(event);
+			}
+		}
+		$('#btn-register').click(function (event) {
+			register(event);
+		});
+	});
+	function  register(event){
+		var $account = $('#account').val();
+		var $real_name = $('#real_name').val();
+		var $password1 = $('#password1').val();
+		var $password2 = $('#password2').val();
+		if (!$account) {
+			toastr.error("您没有输入用户名！");
+			return false;
+		}
+		if (!$real_name) {
+			toastr.error("您没有输入真实姓名！");
+			return false;
+		}
+		if (!$password1) {
+			toastr.error("您没有输入密码！");
+			return false;
+		}
+		if (!$password2) {
+			toastr.error("请再次输入密码！");
+			return false;
+		}
+		if($password1 != $password2){
+			toastr.error("两次密码输入不一致！");
+			return false;
+		}
+		var register_param = {
+			account: $account,
+			real_name: $real_name,
+			password: $password1
+		};
+
+		$.post("registerCheck", register_param, function (data) {
+			if (data.result == 'success') {
+				toastr.success("注册成功，等待管理员审核!");
+				setTimeout(" history.go(-1);","3000");
+			}else{
+				toastr.error("注册失败！");
+			}
+		}, "json");
+		return false;
+	}
+</script>
+<!--注册-->
+</body>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:52 GMT -->
+</html>

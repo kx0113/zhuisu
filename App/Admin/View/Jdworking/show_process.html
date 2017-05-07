@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+     <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5 class="location">查看-加工过程干燥记录</h5>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" action="__CONTROLLER__/add_process?menu_id={$_GET['menu_id']}" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="pid" name="pid"  type="hidden" class="form-control" value="{$info.pid}">
+                            <div class="hr-line-dashed"></div>
+                            <script src="_js_/plugins/layer/laydate/laydate.js"></script>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">时间</label>
+                                <div class="col-md-4">
+                                    <input name="pdate" value="{$info.pdate}" id="pdate" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" readonly>
+                                    <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                    <label class="laydate-icon"></label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">市场名称</label>
+                                <div class="col-md-4">
+                                    <input id="pname" name="pname"  type="text" class="form-control" value="{$info.pname}" readonly>
+                                </div>
+                            </div>
+                            
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产品类型</label>
+                                <div class="col-md-4">
+                                    <input id="ptype" name="ptype"  type="text" class="form-control" value="{$info.ptype}" readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">价格</label>
+                                <div class="col-md-4">
+                                    <input id="price" name="price"  type="text" class="form-control" value="{$info.price}" readonly>
+                                </div>
+                            </div>
+                            
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                   
+                                    <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.pdate.value==''){
+            toastr.error("请选择加工时间！");
+            form.pdate.focus();
+            return false;
+        }   if(form.pname.value==''){
+            toastr.error("请填写市场名称！");
+            form.pname.focus();
+            return false;
+        }if(form.price.value==''){
+            toastr.error("请填写价格！");
+            form.price.focus();
+            return false;
+        }  
+        return true;
+    }
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

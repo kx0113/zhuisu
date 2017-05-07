@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="_css_/login/index.css">
+</head>
+<body>
+<div class='log-main'>
+	<div class='tit'>
+		<div class='logo'><img src="_css_/login/img/xl_03.png"></div>
+		<div class='wz'><img src="_css_/login/img/xk_03.png"></div>
+	</div>
+	<div class='log-li' >
+		<div href="javascript:;" class='q qq q1'>
+			<div><img src="_css_/login/img/xc_03.png"></div>
+			<div class='b'>
+				<a href="{$url[5][path]}"></a>
+				<a href="login"></a>
+			</div>
+		</div>
+		<div href="javascript:;" class='q qq q2'>
+			<div><img src="_css_/login/img/xc_10.png"></div>
+			<div class='v'>
+				<a href="{$url[7][path]}"></a>
+				<a href="{$url[8][path]}"></a>
+			</div>
+		</div>
+		<a href="{$url[2][path]}" class='q q3'><img src="_css_/login/img/xc_07.png"></a>
+		<a href="{$url[3][path]}" class='q q4'><img src="_css_/login/img/xc_13.png"></a>
+		<a href="{$url[4][path]}" class='q q5'><img src="_css_/login/img/xc_19.png"></a>
+
+	</div>
+	<p class='bj'>
+		<img src="_css_/login/img/vb.jpg">
+	</p>
+</div>
+<script src="__js__/jquery-1.11.1.min.js?v=2.1.4"></script>
+<!--<script type="text/javascript" src='js/vendor/jquery-1.9.0.min.js'></script>-->
+<script type="text/javascript" src='js/layer.js'></script>
+<script type="text/javascript">
+	function imgFull(imgParent) {
+		/***** 图片尺寸自适应父级容器，不变形
+		 * 不固定尺寸图片，确保在父级撑满
+		 * 如：图片高度比例小，则高度撑满，宽度超出截取
+		 * imgParent: 需要自适应的图片的父容器，也可为一组图片的祖先容器
+		 * 图片只撑满父级，非祖先级别
+		 */
+
+		// 获取图片，如未传入参数，则获取data-img=full的图片
+		var $imgArr = imgParent ? $(imgParent).find("img") : $("[data-img=full]"),
+				len = $imgArr.length,
+				i = 0;
+
+		// 图片压缩(拉伸)裁剪
+		function init() {
+			var width = $(this).width(),
+					height = $(this).height(),
+					$parent = $(this).parent(),
+					parentWidth = $parent.width(),
+					parentHeight = $parent.height();
+
+			// 判断长宽比例
+			if (width/parentWidth < height/parentHeight) {
+
+				$(this).width(parentWidth);
+				$(this).height("auto");
+				//alert(this.src);
+				$(this).css({"position": "absolute", "left": "0", "top": -($(this).height() - parentHeight)/2});
+			} else {
+
+				$(this).width("auto");
+				$(this).height(parentHeight);
+				$(this).css({"position": "absolute", "top": "0", "left": -($(this).width()- parentWidth)/2});
+			}
+
+			// 判断是否加载完，隐藏loading图标
+
+
+			//$(this).stop().animate({opacity: 1}, 500);
+		}
+
+		$imgArr.each(function() {
+			var $parent = $(this).parent(),
+					img = new Image(),
+					$self = $(this);
+
+			// 初始化父级超出隐藏
+			$parent.css({"overflow": "hidden"});
+
+			if ($parent.css("position") != "absolute") {
+
+				$parent.css({"position": "relative"});
+			}
+			init.call($self[0]);
+			// 图片加载完成执行压缩
+			img.onload = img.onComplete = function() {
+
+				init.call($self[0]);
+				this.onload = this.onerror = null;
+				img = null;
+			};
+
+			img.onerror = function() {
+
+				img.onload = img.onerror = null;
+				img = null;
+			}
+
+			img.src = $(this).attr("src");
+		});
+	}
+	imgFull($(".bj"))
+	window.onresize= function(){
+		imgFull($(".bj"));
+	}
+
+
+</script>
+<script>
+	var x1 = document.getElementsByClassName("log-li")[0].offsetLeft;
+	var y1 = document.getElementsByClassName("log-li")[0].offsetTop;
+	var x2;
+	$(document).mousemove(function(e) {
+		check(e);
+
+	})
+
+	function check(e) {
+		var a = e ? e : window.event;
+		x2 = e.offsetLeft - x1;
+		y2 = e.clientY - y1;
+		var LorR = x2 - 610;
+		var RorL = y2 - 250;
+		var x3 = x1 + 610 - e.clientX;
+		var y3 = y1 + 250 - e.clientY;
+		if(LorR >= 0) {
+			if(RorL >= 0) {
+
+				$(".log-li .q").css("transform", "perspective(3000px)rotateX(" + y2 / 350 * 18 + "deg)rotateY(" + -(-x2 / 800 * 12) + "deg)");
+			}
+
+		} else {
+
+
+			$(".log-li .q").css("transform", "perspective(3000px)rotateX(" + (y3 / 350 * 18) + "deg)rotateY(" + -x3 / 800 * 12 + "deg)");
+
+		}
+
+	}
+	$('.log-li .q').eq(0).animate({left: '30px', opacity: 1}, 200,function(){
+		$('.log-li .q').eq(1).animate({left: '226px', opacity: 1},200,function(){
+			$('.log-li .q').eq(2).animate({left: '426px', opacity: 1},200,function(){
+				$('.log-li .q').eq(3).animate({right: '226px', opacity: 1},200,function(){
+					$('.log-li .q').eq(4).animate({right: '30px', opacity: 1},200)
+				})
+			})
+		})
+	})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5 class="location">查看-采收记录</h5>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="{:U('Admin/Jdproduct/druguse_index')}">农药使用情况记录</a></li>
+                                <li><a href="{:U('Admin/Jdproduct/fertilizer_index')}">肥料使用情况记录</a></li>
+                                <li><a href="{:U('Admin/Jdproduct/farmwork_index')}">田间农事操作</a></li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="id" name="id"  type="hidden" class="form-control" value="{$info2.id}">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产地编号</label>
+                                <div class="col-md-4">
+                                    <input id="place_id" name="place_id"  type="text" class="form-control" value="{$info2.place_id}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <!-- <div class="form-group">
+                                <label class="col-sm-2 control-label">操作人</label>
+                                <div class="col-md-4">
+                                    <input id="tel" name="operator"  type="text" class="form-control" value="{$info2.operator}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div> -->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产地名称</label>
+                                <div class="col-md-4">
+                                    <input id="place_name" name="place_name"  type="text" class="form-control" value="{$info2.place_name}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                           <!--  <div class="form-group">
+                                <label class="col-sm-2 control-label">所属乡镇</label>
+                                <div class="col-md-4">
+                                    <input id="place_name" name="plant_area"  type="text" class="form-control" value="{$info2.plant_area}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">所属村</label>
+                                <div class="col-md-4">
+                                    <input id="place_name" name="site_name"  type="text" class="form-control" value="{$info2.site_name}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div> -->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产品名称</label>
+                                <div class="col-md-4">
+                                    <input id="tel" name="goods_name"  type="text" class="form-control" value="{$info2.goods_name}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">面积（万亩)</label>
+                                <div class="col-md-4">
+                                    <input id="producers" name="area"  type="text" class="form-control" value="{$info2.area}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产量（吨）</label>
+                                <div class="col-md-4">
+                                    <input id="tel" name="yield"  type="text" class="form-control" value="{$info2.yield}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">种植日期</label>
+                                <div class="col-md-4">
+                                    <input name="plant_time" value="{$info2.plant_time}" id="plant_time" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"readonly>
+                                    <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">采收日期</label>
+                                <div class="col-md-4">
+                                    <input name="recovery_time" value="{$info2.recovery_time}" id="recovery_time" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"readonly>
+                                    <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                </div>
+                            </div>
+
+
+                            <!--<div class="form-group">-->
+                            <!--<label class="col-sm-2 control-label">上传图片</label>-->
+                            <!--<div class="col-md-4">-->
+                            <!--<input type="file" name="picture" style="width:350px;">-->
+                            <!--<if condition="$origin.picture neq ''">-->
+                            <!--<img src="{$origin.picture}" width="200px;">-->
+                            <!--</if>-->
+
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="hr-line-dashed"></div>-->
+                            <script src="_js_/plugins/layer/laydate/laydate.js"></script>
+
+
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                          <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.place_id.value==''){
+            toastr.error("请填写产地编号！");
+            form.place_id.focus();
+            return false;
+        }  if(form.recovery_time.value==''){
+            toastr.error("请选择采收日期！");
+            form.recovery_time.focus();
+            return false;
+        } if(form.plant_time.value==''){
+            toastr.error("请选择种植日期！");
+            form.plant_time.focus();
+            return false;
+        }
+        return true;
+    }
+//    $('#number').blur(function (){
+//        var place_id = $.trim($('#number').val());
+//        $.ajax({
+//            type : 'post',
+//            url : '/index.php?m=Admin&c=Jdproduct&a=base_ajax&t='+Math.random(),
+//            data : {place_id:place_id},
+//            dataType : 'json',
+//            success : function(res){
+//                if(res.status == 1){
+//                    $("#place_name").val(res.msg['place_address']);
+//                    $("#farmer_name").val(res.msg['farmer_name']);
+//                    $("#soil_type").val(res.msg['soil_type']);
+//                    $("#plant_size").val(res.msg['plant_size']);
+//                    $("#irrigation_water").val(res.msg['irrigation_water']);
+//                    $("#plant_area").val(res.msg['plant_area']);
+//                    $("#environment").val(res.msg['environment']);
+//                    $("#remark").val(res.msg['remark']);
+//                }else{
+//                    toastr.error(res.msg);
+//                    return false;
+//                    //verify();
+//                }
+//            },
+//            error : function(XMLHttpRequest, textStatus, errorThrown) {
+//                alert('网络失败，请刷新页面后重试');
+//            }
+//        })
+//    });
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

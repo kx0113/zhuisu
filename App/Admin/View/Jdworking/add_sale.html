@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+     <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5 class="location">新增/编辑-销售记录</h5>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" action="__CONTROLLER__/add_sale?menu_id={$_GET['menu_id']}" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="sid" name="sid"  type="hidden" class="form-control" value="{$info.sid}">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">加工批次</label>
+                                <div class="col-md-4">
+                                    <input id="jgpc" name="jgpc"  type="text" class="form-control" value="{$info.jgpc}">
+                                </div>
+                            </div>
+                            
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产品名称</label>
+                                <div class="col-md-4">
+                                    <input id="pro_name" name="pro_name"  type="text" class="form-control" value="{$info.pro_name}">
+                                </div>
+                            </div>
+                          <!--  <div class="hr-line-dashed"></div>-->
+                            <div class="hr-line-dashed"></div>
+                            <if condition="$com eq 0">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">企业ID</label>
+                                    <div class="col-md-4">
+                                        <input id="company_id" name="company_id"  type="text" class="form-control" value="{$info.company_id}">
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                            </if>
+                            <div class="form-group" style="display: none">
+                                <label class="col-sm-2 control-label">销售企业</label>
+                                <div class="col-md-4">
+                                    <input id="company" name="company"  type="text" class="form-control" value="{$info.company}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">销售数量(公斤)</label>
+                                <div class="col-md-4">
+                                    <input id="sale_num" name="sale_num"  type="number" class="form-control" value="{$info.sale_num}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">销售单价</label>
+                                <div class="col-md-4">
+                                    <input id="sale_price" name="sale_price"  type="number" class="form-control" value="{$info.sale_price}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">销售地区</label>
+                                <div class="col-md-4">
+                                    <input id="sale_tiarea" name="sale_toarea"  type="text" class="form-control" value="{$info.sale_toarea}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <script src="_js_/plugins/layer/laydate/laydate.js"></script>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">销售日期</label>
+                                <div class="col-md-4">
+                                    <input name="sale_date" value="{$info.sale_date}" id="cg_date" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                    <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                    <label class="laydate-icon"></label>
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button type="submit" class="btn btn-primary" onclick="T_submit();">提交</button>
+                                    <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form) {
+        if (form.sale_price.value == '') {
+            toastr.error("请选输入单价！");
+            form.sale_price.focus();
+            return false;
+        }
+        if (form.jgpc.value == '') {
+            toastr.error("请填写加工批次！");
+            form.jgpc.focus();
+            return false;
+        }
+        if (form.pro_name.value == '') {
+            toastr.error("请填写产品名称！");
+            form.pro_name.focus();
+            return false;
+        }
+        if (form.sale_num.value == '') {
+            toastr.error("请填写销售数量！");
+            form.sale_num.focus();
+            return false;
+        }
+        if (form.sale_tiarea.value == '') {
+            toastr.error("请填写销售地区！");
+            form.sale_toarea.focus();
+            return false;
+        }
+        if (form.sale_date.value == '') {
+            toastr.error("请选择销售日期！");
+            form.sale_date.focus();
+            return false;
+        }
+        return true;
+    }
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

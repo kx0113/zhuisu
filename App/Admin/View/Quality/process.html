@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/project_detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+<head>
+<include file="Public:head" />
+<style>
+.dl-horizontal dt,.dl-horizontal dd{
+	margin-bottom:5px;
+}
+input[name=button_export]{
+	border:none;
+	background:#1ab394;
+	color:#fff;
+	padding:0 20px;
+	border-radius:3px;
+	line-height: 30px;
+	
+}
+
+</style>
+</head>
+
+<body class="gray-bg">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="wrapper wrapper-content animated fadeInUp">
+            <!--startprint1-->
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="m-b-md">
+                                    
+                                    <h2 style='font-size:20px;'>溯源码：{$sid}</h2>
+                                </div>
+                               <div class="m-b-md">
+
+                                    <h2 style='font-size:20px;'>企业详情</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-7" style='padding-top:12px'>
+                                <dl class="dl-horizontal">
+                                	<dt>企业名称：</dt>
+                                    <dd><span class="label label-primary">{$com_info.name}</span></dd>
+                                    <dt>企业编号：</dt>
+                                    <dd>{$com_info.number}</dd>
+                                    <dt>联系人：</dt>
+                                    <dd>{$com_info.contacts}</dd>
+                                    <dt>联系电话：</dt>
+                                    <dd>{$com_info.mobile}</dd>
+                                    <dt>企业地址：</dt>
+                                    <dd>{$com_info.area}</dd>
+                                    <dt>企业简介：</dt>
+                                    <dd>{$com_info.info}</dd>
+                                </dl>
+
+                            </div>
+                           <div class="col-sm-5">
+                                <dl class="dl-horizontal">
+                                    <img width="200" src="{$com_info.license}"/>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="m-b-md">
+
+                                    <h2 style='font-size:20px;'>采购详情</h2>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5" style='padding-top:12px'>
+                                <dl class="dl-horizontal">
+                                	<dt>采收批次：</dt>
+                                    <dd>{$cg_info.cspc}</dd>
+                                    <dt>采购日期：</dt>
+                                    <dd>{$cg_info.cg_date}</dd>
+                                    <dt>采购单位：</dt>
+                                    <dd>{$cg_info.cg_unit}</dd>
+                                    <dt>采购地区：</dt>
+                                    <dd>{$cg_info.cg_place}</dd>
+                                </dl>
+
+                            </div>
+                           <div class="col-sm-5">
+                                <dl class="dl-horizontal">
+                                    <dt>农户：</dt>
+                                    <dd>{$cg_info.farmer}</dd>
+                                    <dt>联系电话：</dt>
+                                    <dd>{$cg_info.tel}</dd>
+                                    <dt>采购种类：</dt>
+                                    <dd>{$cg_info.type}</dd>
+                                    <dt>采购数量：</dt>
+                                    <dd>{$cg_info.number}</dd>
+
+                                </dl>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="m-b-md">
+
+                                    <h2 style='font-size:20px;'>环境卫生检查详情</h2>
+                                </div>
+
+                            </div>
+                        </div>
+                        <volist name="hj_info" id="vo">
+                        <div class="row">
+                            <div class="col-sm-5" style='padding-top:12px'>
+                                <dl class="dl-horizontal">
+                                	<dt>加工批次：</dt>
+                                    <dd>{$vo.jgpc}</dd>
+                                    <dt>厂房地址：</dt>
+                                    <dd>{$vo.cf_address}</dd>
+                                    <dt>消毒工具：</dt>
+                                    <dd>{$vo.tools}</dd>
+                                    <dt>检查情况：</dt>
+                                    <dd>{$vo.base_status}</dd>
+                                    <dt>检查日期：</dt>
+                                    <dd>{$vo.date}</dd>
+                                </dl>
+
+                            </div>
+
+
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        </volist>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="m-b-md">
+                                    
+                                    <h2 style='font-size:20px;'>人员工具消毒记录</h2>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <volist name="tl_info" id="vo">
+                        <div class="row">
+                            <div class="col-sm-5" style='padding-top:12px'>
+                                <dl class="dl-horizontal">
+                                	<dt>加工批次：</dt>
+                                    <dd>{$vo.jgpc}</dd>
+                                    <dt>人手：</dt>
+                                    <dd>{$vo.number}</dd>
+                                    <dt>消毒项目：</dt>
+                                    <dd>{$vo.project}</dd>
+                                    <dt>工作前：</dt>
+                                    <dd>{$vo.before_work}</dd>
+                                    <dt>工作后：</dt>
+                                    <dd>{$vo.after_work}</dd>
+                                </dl>
+                                
+                            </div>
+                           <div class="col-sm-5">
+                                <dl class="dl-horizontal">
+                                    <dt>措施：</dt>
+                                    <dd>{$vo.measure}</dd>
+                                    <dt>检查人：</dt>
+                                    <dd>{$vo.checker}</dd>
+                                    <dt>审核人：</dt>
+                                    <dd>{$vo.audit}</dd>
+                                    <dt>生产日期：</dt>
+                                    <dd>{$vo.product_time}</dd>
+                                    <dt>审核日期：</dt>
+                                    <dd>{$vo.check_time}</dd>
+                                </dl>
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        </volist>
+                    </div>
+                     <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="m-b-md">
+                                    
+                                    <h2 style='font-size:20px;'>产品加工干燥记录</h2>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <volist name="pr_info" id="vo">
+                        <div class="row">
+                            <div class="col-sm-5" style='padding-top:12px'>
+                                <dl class="dl-horizontal">
+                                	<dt>加工批次：</dt>
+                                    <dd>{$vo.jgpc}</dd>
+                                    <dt>处理时间：</dt>
+                                    <dd>{$vo.pdate}</dd>
+                                    <dt>市场名称：</dt>
+                                    <dd>{$vo.pname}</dd>
+                                    <dt>产品种类：</dt>
+                                    <dd>{$vo.ptype}</dd>
+                                    <dt>价格：</dt>
+                                    <dd>{$vo.price}</dd>
+                                </dl>
+                                
+                            </div>
+                           
+                            
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        </volist>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="m-b-md">
+                                    
+                                    <h2 style='font-size:20px;'>销售记录详情</h2>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5" style='padding-top:12px'>
+                                <dl class="dl-horizontal">
+                                	<dt>出厂批次：</dt>
+                                    <dd>{$sale_info.ccpc}</dd>
+                                    <dt>加工批次：</dt>
+                                    <dd>{$sale_info.jgpc}</dd>
+                                    <dt>产品名称：</dt>
+                                    <dd>{$sale_info.pro_name}</dd>
+                                    <dt>销售地区：</dt>
+                                    <dd>{$sale_info.sale_toarea}</dd>
+
+                                </dl>
+                                
+                            </div>
+                            <div class="col-sm-5">
+                                <dl class="dl-horizontal">
+                                    <dt>销售数量：</dt>
+                                    <dd>{$sale_info.sale_num}</dd>
+                                    <dt>销售单价：</dt>
+                                    <dd>{$sale_info.sale_price}</dd>
+                                    <dt>销售日期：</dt>
+                                    <dd>{$sale_info.sale_date}</dd>
+                                </dl>
+                                
+                            </div>
+                           
+                            
+                        </div>
+                    </div>
+                </div>
+            <!--endprint1-->
+            </div>
+            <!-- <input  type=button name='button_export' title='打印1' onclick=window.print() value="11" />
+            <a href="#" onClick=window.print()><b>打印本页</b></a> -->
+        </div>
+        
+    </div>
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/content.min.js?v=1.0.0"></script>
+    <script>
+    	$('input[type=button]').on('click',function(){
+    		window.print();
+    		
+    	})
+        $(document).ready(function(){$("#loading-example-btn").click(function(){btn=$(this);simpleLoad(btn,true);simpleLoad(btn,false)})});function simpleLoad(btn,state){if(state){btn.children().addClass("fa-spin");btn.contents().last().replaceWith(" Loading")}else{setTimeout(function(){btn.children().removeClass("fa-spin");btn.contents().last().replaceWith(" Refresh")},2000)}};
+    </script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+
+</body>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/project_detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+</html>

@@ -1,0 +1,9 @@
+<div class="tabs-container">
+    <ul class="nav nav-tabs">
+        <li <if condition="$nav eq 'druguse'"> class="active"</if> ><a  href="__CONTROLLER__/druguse_index/menu_id/{$_GET['menu_id']}" aria-expanded="true"> 农药使用情况记录</a></li>
+
+        <li <if condition="$nav eq 'fertilizer'"> class="active"</if> ><a href="__CONTROLLER__/fertilizer_index/menu_id/{$_GET['menu_id']}">肥料使用情况记录</a></li>
+
+        <li <if condition="$nav eq 'farmwork'"> class="active"</if> ><a href="__CONTROLLER__/farmwork_index/menu_id/{$_GET['menu_id']}">田间农事操作</a></li>
+    </ul>
+</div>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5 class="location">查看-生产资料购买</h5>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="{:U('Admin/Jdproduct/data_index')}">生产资料基本情况</a></li>
+                                <li><a href="{:U('Admin/Jdproduct/data_index')}">生产资料购买管理</a></li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="id" name="id"  type="hidden" class="form-control" value="{$info2.id}">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">日期</label>
+                                <div class="col-md-4">
+                                    <input name="datetime" value="{$info2.datetime}" id="test_name" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"readonly>
+                                    <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产品名称</label>
+                                <div class="col-md-4">
+                                    <input id="detection_type" name="goods_name"  type="text" class="form-control" value="{$info2.goods_name}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">主要成分</label>
+                                <div class="col-md-4">
+                                    <input id="tel" name="component"  type="text" class="form-control" value="{$info2.component}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">数量</label>
+                                <div class="col-md-4">
+                                    <input id="tel" name="num"  type="text" class="form-control" value="{$info2.num}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产品批准登记号</label>
+                                <div class="col-md-4">
+                                    <input id="place_name" name="registerid"  type="text" class="form-control" value="{$info2.registerid}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">价格</label>
+                                <div class="col-md-4">
+                                    <input id="tel" name="price"  type="text" class="form-control" value="{$info2.price}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">生产单位</label>
+                                <div class="col-md-4">
+                                    <input id="producers" name="production"  type="text" class="form-control" value="{$info2.production}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">经营单位</label>
+                                <div class="col-md-4">
+                                    <input id="origin" name="business"  type="text" class="form-control" value="{$info2.business}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">所属村</label>
+                                <div class="col-md-4">
+                                    <input id="product_name" name="site_name"  type="text" class="form-control" value="{$info2.site_name}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产地编号</label>
+                                <div class="col-md-4">
+                                    <input id="tel" name="place_id"  type="text" class="form-control" value="{$info2.place_id}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产地名称</label>
+                                <div class="col-md-4">
+                                    <input id="tel" name="place_name"  type="text" class="form-control" value="{$info2.place_name}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">农户名称</label>
+                                <div class="col-md-4">
+                                    <input id="farmer_name" name="farmer_name"  type="text" class="form-control" value="{$info2.farmer_name}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">所属乡镇</label>
+                                <div class="col-md-4">
+                                    <input id="plant_area" name="plant_area"  type="text" class="form-control" value="{$info2.plant_area}"readonly>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">备注</label>
+                                <div class="col-md-4">
+                                    <input id="remark" name="remark"  type="text" class="form-control" value="{$info2.remark}"readonly>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group">-->
+                            <!--<label class="col-sm-2 control-label">上传图片</label>-->
+                            <!--<div class="col-md-4">-->
+                            <!--<input type="file" name="picture" style="width:350px;">-->
+                            <!--<if condition="$origin.picture neq ''">-->
+                            <!--<img src="{$origin.picture}" width="200px;">-->
+                            <!--</if>-->
+
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="hr-line-dashed"></div>-->
+                            <script src="_js_/plugins/layer/laydate/laydate.js"></script>
+
+
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+         if(form.test_name.value==''){
+            toastr.error("请选择日期！");
+            form.test_name.focus();
+            return false;
+        }
+        return true;
+    }
+//    $.ajax({
+//        type : 'post',
+//        url : '/index.php?m=Admin&c=Jdproduct&a=data_ajax&t='+Math.random(),
+//        data : {place_id:place_id},
+//        dataType : 'json',
+//        success : function(res){
+//            if(res.status == 1){
+//                $("#farmer_name").val(res.msg['farmer_name']);
+//                $("#plant_area").val(res.msg['plant_area']);
+//                $("#remark").val(res.msg['remark']);
+//            }else{
+//                toastr.error(res.msg);
+//                return false;
+//                //verify();
+//            }
+//        },
+//        error : function(XMLHttpRequest, textStatus, errorThrown) {
+//            alert('网络失败，请刷新页面后重试');
+//        }
+//    })
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

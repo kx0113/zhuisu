@@ -1,0 +1,8 @@
+<div class="tabs-container">
+<ul class="nav nav-tabs">
+    <li <if condition="$nav eq 'base'"> class="active"</if> ><a  href="__CONTROLLER__/base_index/menu_id/{$_GET['menu_id']}" aria-expanded="true"> 生产基地基本情况</a></li>
+
+    <li <if condition="$nav eq 'data'"> class="active"</if> ><a href="__CONTROLLER__/data_index/menu_id/{$_GET['menu_id']}">生产资料购买管理</a></li>
+
+</ul>
+</div>

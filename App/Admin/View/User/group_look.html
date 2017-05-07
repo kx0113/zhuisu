@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5 class="location">用户组</h5>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="{:U('Admin/User/index')}">用户列表</a></li>
+                                <li><a href="{:U('Admin/User/index',array('status'=>4))}">待审核用户列表</a></li>
+                                <li><a href="{:U('Admin/User/index',array('status'=>3))}">已删除用户列表</a></li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="id" name="id"  type="hidden" class="form-control" value="{$sys_role.id}">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用户组名称</label>
+                                <div class="col-sm-10">
+                                    <input id="name" name="name"  type="text" class="form-control" value="{$sys_role.name}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">备注/描述</label>
+                                <div class="col-sm-10">
+                                    <input id="remark" name="remark"  type="text" class="form-control" value="{$sys_role.remark}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">权限选择</label>
+                                <div class="col-sm-10">
+                                    <!--1级菜单输出-----开始-->
+                                    <volist name="menus" id="vo">
+                                        <li>
+                                            <if condition="$vo.parent_id eq 0">
+                                                <label style="display: none" data-role="none" <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo[id]) { echo 'class="show"';} ?></for>>
+                                                    <h5 style="color: #009999;">{$vo.name}</h5>
+                                                </label>
+                                                <ul class="nav nav-second-level pp">
+                                                    <!--2级菜单输出-----开始-->
+                                                    <volist name="menus" id="vo1">
+                                                        <eq name="vo1.parent_id" value="$vo.id">
+                                                            <div style="margin:0 10px 0 20px;display: none" <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo[id]) { echo 'class="show"';} ?></for>>
+                                                            <label style="font-weight: 100;float: left;margin-right: 10px;color: #ff0000" data-role="none" >
+                                                                <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo[id]) { echo $vo1['name'] ;}  ?></for>
+                                                            </label>
+                                                            <div class="fl">
+                                                                <label>
+                                                                    <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo1[id] && $role_govern[$i][val] == 1) { echo '新增&nbsp;&nbsp;' ;break;} ?></for>
+                                                                </label>
+                                                            </div>
+                                                            <div class="fl">
+                                                                <label>
+                                                                    <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo1[id] && $role_govern[$i][val] == 2) { echo '删除&nbsp;&nbsp;' ;break;} ?></for>
+                                                                </label>
+                                                            </div>
+                                                            <div class="fl">
+                                                                <label>
+                                                                    <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo1[id] && $role_govern[$i][val] == 3) { echo '修改&nbsp;&nbsp;' ;break;} ?></for>
+                                                                </label>
+                                                            </div>
+                                                            <div class="fl">
+                                                                <label>
+                                                                    <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo1[id] && $role_govern[$i][val] == 4) { echo '查看&nbsp;&nbsp;' ;break;} ?></for>
+                                                                </label>
+                                                            </div>
+                                </div>
+                                <div style="clear: both"></div>
+                                <div></div>
+                                <!--3级菜单输出-----开始-->
+                                <volist name="menus" id="vo2">
+                                    <eq name="vo2.parent_id" value="$vo1.id">
+                                        <div style="padding:0 0 0 20px;margin:0 10px 0 20px;float: left;display: none"  <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo[id]) { echo 'class="show"';} ?></for>>
+                                        <label style="font-weight: 100;float: left;margin-right: 10px;color: #1c84c6" data-role="none" >
+                                            <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo[id]) { echo $vo2[name] ;} ?></for>
+                                        </label>
+                                        <div class="fl">
+                                            <label class="c84c6">
+                                                <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo2[id] && $role_govern[$i][val] == 1) { echo '新增&nbsp;&nbsp;' ;break;} ?></for>
+                                            </label>
+                                        </div>
+                                        <div class="fl">
+                                            <label class="c84c6">
+                                                <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo2[id] && $role_govern[$i][val] == 2) { echo '删除&nbsp;&nbsp;' ;break;} ?></for>
+                                            </label>
+                                        </div>
+                                        <div class="fl">
+                                            <label class="c84c6">
+                                                <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo2[id] && $role_govern[$i][val] == 3) { echo '修改&nbsp;&nbsp;' ;break;} ?></for>
+                                            </label>
+                                        </div>
+                                        <div class="fl">
+                                            <label class="c84c6">
+                                                <for start="0" end="$role_govern_count"><?php if ($role_govern[$i][menu_id] == $vo2[id] && $role_govern[$i][val] == 4) { echo '查看&nbsp;&nbsp;' ;break;} ?></for>
+                                            </label>
+                                        </div>
+                            </div>
+                            <div style="clear: both"></div>
+                            </eq>
+                            </volist>
+                            <!--3级菜单输出-----结束-->
+                            </eq>
+                            </volist>
+                            <!--2级菜单输出-----结束-->
+                            </ul>
+                            </if>
+                            </li>
+                            </volist>
+                            <!--1级菜单输出-----结束-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <button type="submit" class="btn btn-primary" onclick="T_submit();">提交</button>
+                            <a class="back btn btn-white" type="submit">取消</a>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.name.value==''){
+            toastr.error("请填写用户组名称！");
+            form.name.focus();
+            return false;
+        }
+        return true;
+    }
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+<style>
+    li{list-style-type:none;}
+    .show{display: block}
+    .c84c6{color: #1c84c6;}
+</style>
+</body>
+</html>

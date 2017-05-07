@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="_css_/login/img/favicon.png">
+	<title>全息溯源管理系统</title>
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Raleway:300,200,100" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
+
+	<link href="_css_/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+
+	<!--<link href="_css_/login/bootstrap.min.css" rel="stylesheet">-->
+	<!--<link rel="stylesheet" href="_css_/login/font-awesome.min.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="_css_/login/nanoscroller.css">-->
+	<link href="_css_/login/style.css" rel="stylesheet">
+
+	<script src="__js__/jquery-1.11.1.min.js"></script>
+	<!--弹出通知-->
+	<link href="_css_/plugins/toastr/toastr.min.css" rel="stylesheet">
+	<script src="_js_/plugins/toastr/toastr.min.js"></script>
+	<!--弹出通知-->
+</head>
+<body class="texture">
+<div id="cl-wrapper" class="login-container">
+	<div class="middle-login">
+		<div class="block-flat">
+			<div class="header">
+				<h3 class="text-center"><img src="_images_/vf_015.png" alt="logo" class="logo-img">&nbsp;全息过程溯源管理系统</h3>
+			</div>
+			<div>
+				<form style="margin-bottom: 0px !important;" action="index.html" class="form-horizontal">
+					<div class="content">
+						<h4 class="title">Login Access</h4>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+									<input id="username" name="username" type="text" placeholder="用户名" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+									<input id="password" name="password" type="password" placeholder="密码" class="form-control">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="foot">
+						<!--<button data-dismiss="modal" type="button" class="btn btn-default">Register</button>-->
+						<input  id="btn-login" value='登录' class="btn btn-primary" style="width: 100px">
+						<!--<button  data-dismiss="modal" type="submit" class="btn btn-primary">登录</button>-->
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="text-center out-links"><a href="#">© 2016 神州精英</a></div>
+	</div>
+</div>
+<!--<script type="text/javascript" src="_css_/assets/lib/jquery/jquery.min.js"></script>-->
+<script type="text/javascript" src="_css_/login/jquery.nanoscroller.js"></script>
+<script type="text/javascript" src="_css_/login/cleanzone.js"></script>
+<script src="_css_/login/bootstrap.min.js"></script>
+<!--<script src="_css_/assets/js/voice-recognition.js"></script>-->
+<script type="text/javascript">
+	$(document).ready(function(){
+		//initialize the javascript
+		App.init();
+	});
+
+</script>
+<!--登录验证-->
+<script type="text/javascript">
+	$(function () {
+		document.onkeydown = function (event) {
+			var theEvent = window.event || event;
+			var code = theEvent.keyCode || theEvent.which;
+			if (code == 13) {
+				login(event);
+			}
+		}
+		$('#btn-login').click(function (event) {
+			login(event);
+		});
+	});
+	function  login(event){
+		var $username = $('#username');
+		var $password = $('#password');
+		if (!$username.val()) {
+			toastr.error("您没有输入用户名！");
+			return false;
+		}
+		if (!$password.val()) {
+			toastr.error("您没有输入密码！");
+			return false;
+		}
+		var login_param = {
+			username: $username.val(),
+			password: $password.val()
+		};
+
+		$.post("loginCheck", login_param, function (data) {
+			if (data.result == 'status1') {
+				window.location.href = "{:u('/Admin/Index')}";
+			} else if(data.result == 'status2'){
+				toastr.error("账户已被冻结，请联系管理员！");
+			}else if(data.result == 'status3'){
+				toastr.error("账户已被注销，请联系管理员！");
+			}else if(data.result == 'status4'){
+				toastr.error("账户正在审核中...");
+			}else if(data.result == 'status5'){
+				toastr.success("您是vip用户!");
+			}else if(data.result == 'status6'){
+				alert("您的账号没有分配权限，请联系管理员!");
+			}else{
+				toastr.error("不存在该账号的用户资料！");
+			}
+		}, "json");
+		return false;
+	}
+</script>
+<!--登录验证-->
+</body>
+</html>

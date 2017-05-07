@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/project_detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+<head>
+    <include file="Public:head" />
+    <style>
+        .dl-horizontal dt,.dl-horizontal dd{
+            margin-bottom:5px;
+        }
+        input[name=button_export]{
+            border:none;
+            background:#1ab394;
+            color:#fff;
+            padding:0 20px;
+            border-radius:3px;
+            line-height: 30px;
+
+        }
+
+    </style>
+</head>
+
+<body class="gray-bg">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="wrapper wrapper-content animated fadeInUp">
+            <!--startprint1-->
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="m-b-md">
+
+                                <h2 style='font-size:20px;'>溯源码：{$sid}</h2>
+                            </div>
+                            <div class="m-b-md">
+
+                                <h2 style='font-size:20px;'>生产基地基本情况</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <if condition="$base_info neq null">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <dl class="dl-horizontal">
+                                <dt >产地编号：</dt>
+                                <dd>{$base_info.place_id}</dd>
+                                <dt>产地名称：</dt>
+                                <dd>{$base_info.place_name}</dd>
+                                <dt>是否是有机农产品：</dt>
+                                <dd>{$base_info.is_organic}</dd>
+                                <dt>种植品种：</dt>
+                                <dd>{$base_info.plantinfo}</dd>
+                                <dt>所属村：</dt>
+                                <dd>{$base_info.site_name}</dd>
+                                <dt>时间：</dt>
+                                <dd>{$base_info.datetime}</dd>
+                                <dt>生产基地地址：</dt>
+                                <dd>{$base_info.place_address}</dd>
+                                </dl>
+                            </div>
+                        <div class="col-sm-5">
+                            <dl class="dl-horizontal">
+                                <dt>农户名称：</dt>
+                                <dd>{$base_info.farmer_name}</dd>
+                                <dt>土壤类型：</dt>
+                                <dd>{$base_info.soil_type}</dd>
+                                <dt>种植面积：</dt>
+                                <dd>{$base_info.plant_size}</dd>
+                                <dt>灌溉水源名称：</dt>
+                                <dd>{$base_info.irrigation_water}</dd>
+                                <dt>所属乡镇：</dt>
+                                <dd>{$base_info.plant_area}</dd>
+                                <dt>周边环境描述：</dt>
+                                <dd>{$base_info.environment}</dd>
+                                <dt>备注：</dt>
+                                <dd>{$base_info.remark}</dd>
+                            </dl>
+                        </div>
+                        </div>
+                        </if>
+                </div>
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="m-b-md">
+
+                                    <h2 style='font-size:20px;'>产地生产资料购买记录</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <if condition="$data_info neq null">
+                        <div class="row">
+                          <div class="col-sm-5">
+                                <dl class="dl-horizontal">
+                                    <dt>日期：</dt>
+                                    <dd>{$data_info.datetime}</dd>
+                                    <dt>产品名称：</dt>
+                                    <dd>{$data_info.goods_name}</dd>
+                                    <dt>主要成分：</dt>
+                                    <dd>{$data_info.component}</dd>
+                                    <dt>数量：</dt>
+                                    <dd>{$data_info.num}</dd>
+                                    <dt>产品批准登记号：</dt>
+                                    <dd>{$data_info.registerid}</dd>
+                                    <dt>价格：</dt>
+                                    <dd>{$data_info.price}</dd>
+                                    <dt>生产单位：</dt>
+                                    <dd>{$data_info.production}</dd>
+                                    </dl>
+                              </div>
+                            <div class='col-sm-5'>
+                                <dl class='dl-horizontal'>
+
+                                    <dt>经营单位：</dt>
+                                    <dd>{$data_info.business}</dd>
+                                    <dt>所属村：</dt>
+                                    <dd>{$data_info.site_name}</dd>
+                                    <dt>产地编号：</dt>
+                                    <dd>{$data_info.place_id}</dd>
+                                    <dt>产地名称：</dt>
+                                    <dd>{$data_info.place_name}</dd>
+                                    <dt>所属乡镇：</dt>
+                                    <dd>{$data_info.plant_area}</dd>
+                                    <dt>备注：</dt>
+                                    <dd>{$data_info.remark}</dd>
+                                </dl>
+                            </div>
+                            </div>
+                            </if>
+                    </div>
+
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="m-b-md">
+
+                                        <h2 style='font-size:20px;'>产地农药使用情况记录</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <if condition="$druguse_info neq null">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <dl class="dl-horizontal">
+                                        <dt>农药名称：</dt>
+                                        <dd>{$druguse_info.drug_name}</dd>
+                                        <dt>使用量/亩：</dt>
+                                        <dd>{$druguse_info.amount}</dd>
+                                        <dt>稀释倍数：</dt>
+                                        <dd>{$druguse_info.dilute_multiple}</dd>
+                                        <dt>使用方法：</dt>
+                                        <dd>{$druguse_info.method}</dd>
+                                        <dt>防治对象：</dt>
+                                        <dd>{$druguse_info.protect_object}</dd>
+                                        <dt>日期：</dt>
+                                        <dd>{$druguse_info.datetime}</dd>
+                                        <dt>天气：</dt>
+                                        <dd>{$druguse_info.weather}</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <dl class="dl-horizontal">
+                                        <dt>操作人：</dt>
+                                        <dd>{$druguse_info.operator}</dd>
+                                        <dt>种植品种：</dt>
+                                        <dd>{$druguse_info.plantinfo}</dd>
+                                        <dt>所属乡镇：</dt>
+                                        <dd>{$druguse_info.plant_area}</dd>
+                                        <dt>所属村：</dt>
+                                        <dd>{$druguse_info.site_name}</dd>
+                                        <dt>产地编号：</dt>
+                                        <dd>{$druguse_info.place_id}</dd>
+                                        <dt>产地名称：</dt>
+                                        <dd>{$druguse_info.place_name}</dd>
+                                    </dl>
+                                </div>
+                                </div>
+                                </if>
+                        </div>
+
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="m-b-md">
+
+                                            <h2 style='font-size:20px;'>产地肥料使用情况记录</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <if condition="$fertilizer_info neq null">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <dl class="dl-horizontal">
+                                            <dt>产地编号：</dt>
+                                            <dd>{$fertilizer_info.place_id}</dd>
+                                            <dt>产地名称：</dt>
+                                            <dd>{$fertilizer_info.place_name}</dd>
+                                            <dt>肥料名称：</dt>
+                                            <dd>{$fertilizer_info.fertilizer_name}</dd>
+                                            <dt>使用量/亩：</dt>
+                                            <dd>{$fertilizer_info.amount}</dd>
+                                            <dt>使用方法：</dt>
+                                            <dd>{$fertilizer_info.method}</dd>
+                                            <dt>用途：</dt>
+                                            <dd>{$fertilizer_info.purpose}</dd>
+                                            <dt>日期：</dt>
+                                            <dd>{$fertilizer_info.datetime}</dd>
+                                            </dl>
+                                        </div>
+                                    <div class="col-sm-5">
+                                        <dl class="dl-horizontal">
+                                            <dt>天气：</dt>
+                                            <dd>{$fertilizer_info.weather}</dd>
+                                            <dt>操作人：</dt>
+                                            <dd>{$fertilizer_info.operator}</dd>
+                                            <dt>种植品种：</dt>
+                                            <dd>{$fertilizer_info.plantinfo}</dd>
+                                            <dt>所属村：</dt>
+                                            <dd>{$fertilizer_info.site_name}</dd>
+                                            <dt>农户名称：</dt>
+                                            <dd>{$fertilizer_info.farmer_name}</dd>
+                                            <dt>所属乡镇：</dt>
+                                            <dd>{$fertilizer_info.plant_area}</dd>
+                                        </dl>
+                                    </div>
+                                    </div>
+                                    </if>
+                            </div>
+                            <div class="ibox">
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="m-b-md">
+
+                                                <h2 style='font-size:20px;'>产地田间农事操作记录</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <if condition="$farmwork_info neq null">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <dl class="dl-horizontal">
+                                                <dt>产地编号：</dt>
+                                                <dd>{$farmwork_info.place_id}</dd>
+                                                <dt>产地名称：</dt>
+                                                <dd>{$farmwork_info.place_name}</dd>
+                                                <dt>农事活动项目：</dt>
+                                                <dd>{$farmwork_info.farm_project}</dd>
+                                                <dt>日期：</dt>
+                                                <dd>{$farmwork_info.datetime}</dd>
+                                                <dt>活动内容：</dt>
+                                                <dd>{$farmwork_info.content}</dd>
+                                                </dl>
+                                            </div>
+                                        <div class="col-sm-5">
+                                           <dl class="dl-horizontal">
+                                                <dt>操作人：</dt>
+                                                <dd>{$farmwork_info.operator}</dd>
+                                                <dt>种植品种：</dt>
+                                                <dd>{$farmwork_info.plantinfo}</dd>
+                                                <dt>所属村：</dt>
+                                                <dd>{$farmwork_info.site_name}</dd>
+                                                <dt>农户名称：</dt>
+                                                <dd>{$farmwork_info.farmer_name}</dd>
+                                                <dt>所属乡镇：</dt>
+                                                <dd>{$farmwork_info.plant_area}</dd>
+                                            </dl>
+                                        </div>
+                                        </div>
+                                        </if>
+                                </div>
+                                <div class="ibox">
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="m-b-md">
+
+                                                <h2 style='font-size:20px;'>采收记录</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <if condition="$record_info neq null">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <dl class="dl-horizontal">
+                                                <dt>采收编号：</dt>
+                                                <dd>{$record_info.batch_id}</dd>
+                                                <dt>产地编号：</dt>
+                                                <dd>{$record_info.place_id}</dd>
+                                                <dt>产地名称：</dt>
+                                                <dd>{$record_info.place_name}</dd>
+                                                <dt>操作人：</dt>
+                                                <dd>{$record_info.operator}</dd>
+                                                <dt>所属乡镇：</dt>
+                                                <dd>{$record_info.plant_area}</dd>
+                                                <dt>所属村：</dt>
+                                                <dd>{$record_info.site_name}</dd>
+                                                </dl>
+                                            </div>
+                                        <div class="col-sm-5">
+                                            <dl class="dl-horizontal">
+
+                                                <dt>产品名称：</dt>
+                                                <dd>{$record_info.goods_name}</dd>
+                                                <dt>面积（万亩)：</dt>
+                                                <dd>{$record_info.area}</dd>
+                                                <dt>产量（吨）：</dt>
+                                                <dd>{$record_info.yield}</dd>
+                                                <dt>种植日期：</dt>
+                                                <dd>{$record_info.plant_time}</dd>
+                                                <dt>采收日期：</dt>
+                                                <dd>{$record_info.recovery_time}</dd>
+                                            </dl>
+                                        </div>
+                                        </div>
+                                        </if>
+                                </div>
+                            <script src="js/jquery.min.js?v=2.1.4"></script>
+                            <script src="js/bootstrap.min.js?v=3.3.6"></script>
+                            <script src="js/content.min.js?v=1.0.0"></script>
+                            <script>
+                                $('input[type=button]').on('click',function(){
+                                    window.print();
+
+                                })
+                                $(document).ready(function(){$("#loading-example-btn").click(function(){btn=$(this);simpleLoad(btn,true);simpleLoad(btn,false)})});function simpleLoad(btn,state){if(state){btn.children().addClass("fa-spin");btn.contents().last().replaceWith(" Loading")}else{setTimeout(function(){btn.children().removeClass("fa-spin");btn.contents().last().replaceWith(" Refresh")},2000)}};
+                            </script>
+                            <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+
+</body>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/project_detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+</html>

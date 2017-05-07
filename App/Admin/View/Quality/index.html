@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <include file="Public:head" />
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 class="location">质量追溯-内部监管</h5>
+                    <div class="ibox-tools">
+                       <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                            <i class="glyphicon glyphicon-list"></i>
+                        </a>-->
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    <!--    <ul class="dropdown-menu dropdown-user">
+                            <li><a href="{:U('Admin/Prove/add_origin')}">新增产地证明</a></li>
+                        </ul>-->
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                        <div style="margin-bottom: 10px;">
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <form method="get" id="search-form">
+                                <select type="search" name="key_type" class="form-control" style="width: 160px;float: left;margin: 5px;">
+                                    <option value="1" <if condition="$key_type==1">selected</if> >溯源码</option>
+                                    <option value="2" <if condition="$key_type==2">selected</if> >企业</option>
+                                    <option value="3" <if condition="$key_type==3">selected</if> >产品</option>
+
+                                </select>
+                                <input id="producers" name="key" type="search" class="form-control" style="float: left;width: 200px;margin: 5px;"   value="{$key}"  placeholder="请输入标题关键字">
+                                <button type="submit" class="btn btn-w-m btn-info" style="margin: 5px">搜索</button>
+                            </form>
+                        </div>
+
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr>
+                            </th>
+                            <th>溯源码</th>
+                            <th>企业名称</th>
+                            <th>产品名称</th>
+                            <th>采收/出厂时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="info_list" id="vo">
+                            <tr class="gradeX">
+                                <td>{$vo.sid}</td>
+                                <td><if condition="$vo['company_id']">{$vo.company_name}<else />暂无企业信息</if></td>
+                                <td>{$vo.pro_name}</td>
+                                <td>{$vo.cg_date}</td>
+                                <td class="center">
+                                    <if condition="$vo['company_id']"><a href="{:u('Admin/Company/message',array('company_id'=>$vo['company_id']))}">企业信息</a>&nbsp;&nbsp;</if>
+                                    <a href="{:u('Admin/Quality/environment',array('cspc'=>$vo['cspc'],'jgpc'=>$vo['jgpc'],'sid'=>$vo['sid']))}">环境信息</a>&nbsp;&nbsp;
+                                    <a href="{:u('Admin/Quality/product',array('cspc'=>$vo['cspc'],'jgpc'=>$vo['jgpc'],'sid'=>$vo['sid']))}">生产过程</a>&nbsp;&nbsp;
+                                    <a href="{:u('Admin/Quality/process',array('id'=>$vo['jgpc'],'sid'=>$vo['sid']))}">加工过程</a>&nbsp;&nbsp;
+                                    <a href="{:u('Admin/Quality/test_index',array('sid'=>$vo['sid']))}">检验检测</a>&nbsp;&nbsp;
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!--   <span class="btn btn-white" style="float:right;margin: 5px">共{$count}条记录</span>--> <div style="float:right;margin: 5px">  {$page}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<!--<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>-->
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script>
+    $(document).ready(function(){$(".dataTables-example").dataTable();var oTable=$("#editable").dataTable();oTable.$("td").editable("http://www.zi-han.net/theme/example_ajax.php",{"callback":function(sValue,y){var aPos=oTable.fnGetPosition(this);oTable.fnUpdate(sValue,aPos[0],aPos[1])},"submitdata":function(value,settings){return{"row_id":this.parentNode.getAttribute("id"),"column":oTable.fnGetPosition(this)[2]}},"width":"90%","height":"100%"})});function fnClickAddRow(){$("#editable").dataTable().fnAddData(["Custom row","New row","New row","New row","New row"])};
+</script>
+</body>
+</html>

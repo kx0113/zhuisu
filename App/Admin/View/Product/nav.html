@@ -1,0 +1,17 @@
+<div class="tabs-container">
+    <ul class="nav nav-tabs">
+        <li <if condition="$_GET['m'] eq base"> class="active"</if> ><a  href="{:U('Admin/Product/add_base',array('m'=>base,'product_id'=>$_GET['product_id']))}" aria-expanded="true"> 基础信息</a></li>
+
+        <li <if condition="$_GET['m'] eq intro"> class="active"</if> ><a href="{:U('Admin/Product/add_intro',array('m'=>intro,'product_id'=>$_GET['product_id']))}">产品简介</a></li>
+
+        <li <if condition="$_GET['m'] eq seed"> class="active"</if> ><a href="{:U('Admin/Product/add_seed',array('m'=>seed,'product_id'=>$_GET['product_id']))}">种子信息</a></li>
+
+        <li <if condition="$_GET['m'] eq plant"> class="active"</if> ><a href="{:U('Admin/Product/index_plant',array('m'=>plant,'product_id'=>$_GET['product_id']))}">植物生长图片</a></li>
+
+        <li <if condition="$_GET['m'] eq manure"> class="active"</if> ><a href="{:U('Admin/Product/index_manure',array('m'=>manure,'product_id'=>$_GET['product_id']))}">肥料使用</a></li>
+
+        <li <if condition="$_GET['m'] eq pesticide"> class="active"</if> ><a href="{:U( 'Admin/Product/index_pesticide',array('m'=>pesticide,'product_id'=>$_GET['product_id']))}">农药使用</a></li>
+
+        <li <if condition="$_GET['m'] eq grow"> class="active"</if> ><a href="{:U('Admin/Product/add_grow',array('m'=>grow,'product_id'=>$_GET['product_id']))}">生长环境数据</a></li>
+    </ul>
+</div>

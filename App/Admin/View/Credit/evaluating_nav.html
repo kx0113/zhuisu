@@ -1,0 +1,27 @@
+<!--信用指标管理顶部导航--------开始-->
+<if condition="$_GET['val2'] eq 'evaluating'">
+<div class="tabs-container">
+    <ul class="nav nav-tabs">
+        <li <if condition="$cz eq 'credit_evaluating'"> class="active"</if> >
+            <a  href="__CONTROLLER__/credit_evaluating/menu_id/{$_GET['menu_id']}/val2/{$_GET['val2']}" aria-expanded="true"> 评价指标管理</a>
+        </li>
+        <li <if condition="$cz eq 'credit_classify'"> class="active"</if> >
+            <a href="__CONTROLLER__/credit_classify/menu_id/{$_GET['menu_id']}/val2/{$_GET['val2']}">指标分类管理</a>
+        </li>
+    </ul>
+</div>
+<!--信用指标管理顶部导航--------结束-->
+<else/>
+<!--信用评价顶部导航--------开始-->
+<div class="tabs-container">
+    <ul class="nav nav-tabs">
+        <li <if condition="$val eq 'honor'"> class="active"</if> >
+        <a  href="__CONTROLLER__/honor_index/menu_id/{$_GET['menu_id']}/val2/{$_GET['val2']}" aria-expanded="true"> 信用数据采集</a>
+        </li>
+        <li <if condition="$val eq 'blacklist'"> class="active"</if> >
+        <a href="__CONTROLLER__/honor_blacklist/menu_id/{$_GET['menu_id']}/val2/{$_GET['val2']}">黑名单管理</a>
+        </li>
+    </ul>
+</div>
+<!--信用评价顶部导航--------结束-->
+</if>

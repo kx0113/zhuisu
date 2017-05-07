@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+     <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <if condition="$_GET['product_id']">
+                        <include file="Product:nav" />
+                        <else />
+                        <div class="ibox-title">
+                            <h5 class="location">基础信息</h5>
+                            <div class="ibox-tools">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                    <i class="glyphicon glyphicon-list"></i>
+                                </a>
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </if>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="id" name="id"  type="hidden" value="{$product.product_id}">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">档案标题</label>
+                                <div class="col-sm-10">
+                                    <input id="file_title" name="file_title"  type="text" class="form-control" value="{$product.file_title}" placeholder="档案标题">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产品名称</label>
+                                <div class="col-sm-10">
+                                    <input id="pro_name" name="pro_name"  type="text" class="form-control" value="{$product.pro_name}" placeholder="产品名称">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{$pro_type[0]['name']}</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <select id="pro_type" name="pro_type" data-placeholder="请选择{$pro_type[0]['name']}..." class="chosen-select" style="width:350px;" tabindex="2">
+                                                <option value="">请选择{$pro_type[0]['name']}</option>
+                                                <volist name="pro_type[0]['data']" id="vo">
+                                                    <option <if condition="$vo['tag_id'] eq $product['pro_type']"> selected="selected" </if> value="{$vo.tag_id}">{$vo.name}</option>
+                                                </volist>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="hr-line-dashed"></div>
+                            <!--区域信息-->
+                            <include file="Product:common_area" />
+                            <!--区域信息-->
+                            <div class="hr-line-dashed"></div>
+                            <!--<div class="form-group">-->
+                                <!--<label class="col-sm-2 control-label">{$plant_year[0]['name']}</label>-->
+                                <!--<div class="col-sm-10">-->
+                                    <!--<div class="input-group">-->
+                                        <!--<select id="plant_year" name="plant_year" data-placeholder="请选择{$plant_year[0]['name']}..." class="chosen-select" style="width:350px;" tabindex="2">-->
+                                            <!--<option value="">请选择{$plant_year[0]['name']}</option>-->
+                                            <!--<volist name="plant_year[0]['data']" id="vo">-->
+                                                <!--<option <if condition="$vo['tag_id'] eq $product['plant_year']"> selected="selected" </if> value="{$vo.tag_id}">{$vo.name}</option>-->
+                                            <!--</volist>-->
+                                        <!--</select>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <script src="_js_/plugins/layer/laydate/laydate.js"></script>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">种植时间：</label>
+                                <div class="col-sm-10">
+                                    <input name="plant_year" value="{$product.plant_year}" id="plant_year" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                    <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                    <label class="laydate-icon"></label>
+                                </div>
+                            </div>
+                                <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">种植面积</label>
+                                <div  class="col-sm-10">
+                                    <input style="width: 278px;position:relative" id="plant_acreage" name="plant_acreage"  type="text" class="form-control" value="{$product.plant_acreage}" placeholder="种植面积">
+                                    <span style="position: absolute;left:210px;top:10px">单位（公顷）</span>
+                                </div>
+                            </div>
+                                <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">承包人</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <select id="contractor" name="contractor" data-placeholder="请选择承包人..." class="chosen-select" style="width:350px;" tabindex="2">
+                                            <option value="">请选择承包人</option>
+                                            <volist name="contractor" id="vo">
+                                                <option <if condition="$vo['id'] eq $product['contractor']"> selected="selected" </if> value="{$vo.id}">{$vo.name}</option>
+                                            </volist>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <if condition="$product['contractor']">
+                                <div class="form-group">
+                                    <div class="hr-line-dashed"></div>
+                                    <label class="col-sm-2 control-label">手机号</label>
+                                    <div class="col-sm-10">
+                                        <span style="line-height: 31px;">{$product.contractor_mobile.mobile}</span>
+                                    </div>
+                                </div>
+                            </if>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button type="submit" class="btn btn-primary" onclick="T_submit();">提交</button>
+                                    <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.file_title.value==''){
+            toastr.error("请填写档案标题！");
+            form.file_title.focus();
+            return false;
+        }if(form.pro_name.value==''){
+            toastr.error("请填写产品名称！");
+            form.pro_name.focus();
+            return false;
+        }if(form.pro_type.value==''){
+            toastr.error("请选择产品类别！");
+            form.pro_type.focus();
+            return false;
+        }if(form.plant_area.value==''){
+            toastr.error("请选择种植区域！");
+            form.plant_area.focus();
+            return false;
+        }if(form.site_name.value==''){
+            toastr.error("请选择地块名称！");
+            form.site_name.focus();
+            return false;
+        }if(form.plant_year.value==''){
+            toastr.error("请选择种植年份！");
+            form.plant_year.focus();
+            return false;
+        }if(form.plant_acreage.value==''){
+            toastr.error("请填写种植面积！");
+            form.plant_acreage.focus();
+            return false;
+        }if(form.contractor.value==''){
+            toastr.error("请选择承包人！");
+            form.contractor.focus();
+            return false;
+        }
+        return true;
+    }
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

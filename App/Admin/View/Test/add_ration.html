@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+     <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+    <style type="text/css">
+        .auto_hidden {
+            width:204px;border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            border-left: 1px solid #333;
+            border-right: 1px solid #333;
+            position:absolute;
+            display:none;
+        }
+        .auto_show {
+            width:204px;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            border-left: 1px solid #333;
+            border-right: 1px solid #333;
+            position:absolute;
+            z-index:9999; /* 设置对象的层叠顺序 */
+            display:block;
+        }
+        .auto_onmouseover{
+            color:#ffffff;
+            background-color:highlight;
+            width:100%;
+        }
+        .auto_onmouseout{
+            color:#000000;
+            width:100%;
+            background-color:#ffffff;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5 class="location">新增/编辑-定量检测</h5>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="{:U('Admin/Test/ration',array('menu_id'=>$_GET['menu_id']))}">定量检测列表</a></li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="id" name="id"  type="hidden" class="form-control" value="{$ration.id}">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产品批次</label>
+                                <div class="col-md-4">
+                                    <input id="product_batch" name="product_batch"  type="text" class="form-control" value="{$ration.product_batch}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产品名称</label>
+                                <div class="col-md-4">
+                                    <input id="product_name" name="product_name"  type="text" class="form-control" value="{$ration.product_name}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <include file="Jdenvironment:commen" />
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">检测人</label>
+                                <div class="col-md-4">
+                                    <input id="test_user" name="test_user"  type="text" class="form-control" value="{$ration.test_user}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">检测类型</label>
+                                <div class="col-md-4">
+                                    <input id="test_type" name="test_type"  type="text" class="form-control" value="{$ration.test_type}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">ph值</label>
+                                <div class="col-md-4">
+                                    <input id="ph_val" name="ph_val"  type="text" class="form-control" value="{$ration.ph_val}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">吸光值</label>
+                                <div class="col-md-4">
+                                    <input id="light_val" name="light_val"  type="text" class="form-control" value="{$ration.light_val}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">是否合格</label>
+                                <div class="col-sm-10">
+                                    <label>
+                                        <input type="radio" name="is_qualified" value="1" <if condition="$ration['is_qualified'] eq 1">checked</if> />合格
+                                    </label>
+                                    &nbsp;&nbsp;
+                                    <label>
+                                        <input type="radio" name="is_qualified" value="2" <if condition="$ration['is_qualified'] eq 2">checked</if>/>不合格
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <script src="_js_/plugins/layer/laydate/laydate.js"></script>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">检测日期</label>
+                                <div class="col-md-4">
+                                    <input name="test_date" value="{$ration.test_date}" id="test_date" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                    <!--<input name="start_time" value="{$ration.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                    <label class="laydate-icon"></label>
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button type="submit" class="btn btn-primary" onclick="T_submit();">提交</button>
+                                    <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var autoComplete=new AutoComplete('origin_num','auto',[{$place}]);
+    $(function(){
+        var $inputwrapper = $('.col-md-4');
+        $inputwrapper.find('#origin_num').on('input propertychange',function(){
+            var result = $(this).val();
+            $.ajax({
+                type : 'get',
+                url : '/index.php?m=Admin&c=Basic&a=ajax_place&t='+Math.random(),
+                data : {place_id:result},
+                dataType : 'json',
+                success : function(res){
+
+                    // console.log(res);
+
+                    if(res!=null){
+                        $("#origin").val(res.place_name);
+                    }else{
+                        $("#origin").val('未找到相关信息');
+                    }
+                },
+                error : function(XMLHttpRequest, textStatus, errorThrown) {
+                    toastr.error("网络错误，刷新重试！");
+                }
+            });
+
+        });
+    })
+    function beforeSubmit(form){
+        if(form.product_batch.value==''){
+            toastr.error("请填写产品批次！");
+            form.product_batch.focus();
+            return false;
+        } if(form.test_date.value==''){
+            toastr.error("请选择检测日期时间！");
+            form.test_date.focus();
+            return false;
+        }
+        return true;
+    }
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

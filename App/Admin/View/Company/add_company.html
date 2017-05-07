@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <if condition="$_GET['company_id']">
+                            <h5 class="location">编辑企业</h5>
+                        <else/>
+                            <h5 class="location">新建企业</h5>
+                        </if>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="{:U('Admin/User/index')}">用户列表</a></li>
+                                <li><a href="{:U('Admin/User/index',array('status'=>4))}">待审核用户列表</a></li>
+                                <li><a href="{:U('Admin/User/index',array('status'=>3))}">已删除用户列表</a></li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="company_id" name="company_id"  type="hidden" class="form-control" value="{$company_list.company_id}">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">企业名称</label>
+                                <div class="col-sm-10">
+                                    <input id="name" name="name"  type="text" class="form-control" value="{$company_list.name}" <if condition="$_GET['m'] eq 'look'">disabled</if>/>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">注册登记号</label>
+                                <div class="col-sm-10">
+                                    <input id="register_code" name="register_code"  type="text" class="form-control" value="{$company_list.register_code}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">法人代表</label>
+                                <div class="col-sm-10">
+                                    <input id="legal_person" name="legal_person"  type="text" class="form-control" value="{$company_list.legal_person}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">电话</label>
+                                <div class="col-sm-10">
+                                    <input id="mobile" name="mobile"  type="text" class="form-control" value="{$company_list.mobile}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">生产规模</label>
+                                <div class="col-sm-10">
+                                    <input id="scale" name="scale"  type="text" class="form-control" value="{$company_list.scale}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">经营范围</label>
+                                <div class="col-sm-10">
+                                    <input id="scope" name="scope"  type="text" class="form-control" value="{$company_list.scope}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">基地地址</label>
+                                <div class="col-sm-10">
+                                    <input id="area" name="area"  type="text" class="form-control" value="{$company_list.area}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">种植面积</label>
+                                <div class="col-sm-10">
+                                    <input id="acreage" name="acreage"  type="text" class="form-control" value="{$company_list.acreage}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <script src="_js_/plugins/layer/laydate/laydate.js"></script>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">有效期</label>
+                                <div class="col-sm-10">
+                                    <input name="validity" value="{$company_list.validity}" id="validity" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" <if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                    <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                    <label class="laydate-icon"></label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">简介</label>
+                                <div class="col-sm-10">
+                                    <textarea style="height: 120px" id="info" name="info"  type="text" class="form-control" <if condition="$_GET['m'] eq 'look'">disabled</if>>{$company_list.info}</textarea>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">环境监测报告</label>
+                                <div class="col-sm-10">
+                                   <textarea style="height: 120px" id="environment_report" name="environment_report"  type="text" class="form-control" <if condition="$_GET['m'] eq 'look'">disabled</if>>{$company_list.environment_report}</textarea>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">土壤分析报告</label>
+                                <div class="col-sm-10">
+                                   <textarea style="height: 120px" id="soil_report" name="soil_report"  type="text" class="form-control" <if condition="$_GET['m'] eq 'look'">disabled</if>>{$company_list.soil_report}</textarea>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">水质监测报告</label>
+                                <div class="col-sm-10">
+                                    <textarea style="height: 120px" id="water_report" name="water_report"  type="text" class="form-control" <if condition="$_GET['m'] eq 'look'">disabled</if>>{$company_list.water_report}</textarea>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <!--<div class="form-group">-->
+                                <!--<label class="col-sm-2 control-label">上传营业执照</label>-->
+                                <!--<div class="col-md-4">-->
+                                    <!--<input type="file" name="picture" style="width:350px;">-->
+                                    <!--<if condition="$company_list.license neq ''">-->
+                                        <!--<br>-->
+                                        <!--<img src="{$company_list.license}" width="150px;">-->
+                                    <!--</if>-->
+
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="form-group">
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <if condition="$_GET['m'] neq 'look'"><button type="submit" class="btn btn-primary" onclick="T_submit();" >提交</button></if>
+                                        <a class="back btn btn-white" type="submit">取消</a>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.name.value==''){
+            toastr.error("请填写企业名称！");
+            form.name.focus();
+            return false;
+        }if(form.register_code.value==''){
+            toastr.error("请填写注册登记号！");
+            form.register_code.focus();
+            return false;
+        }if(form.legal_person.value==''){
+            toastr.error("请填写法人代表！");
+            form.legal_person.focus();
+            return false;
+        }if(form.mobile.value==''){
+            toastr.error("请填写手机号！");
+            form.mobile.focus();
+            return false;
+        }if(form.scale.value==''){
+            toastr.error("请填写生产规模！");
+            form.scale.focus();
+            return false;
+        }if(form.scope.value==''){
+            toastr.error("请填写经营范围！");
+            form.scope.focus();
+            return false;
+        }if(form.area.value==''){
+            toastr.error("请填写基地地址！");
+            form.area.focus();
+            return false;
+        }if(form.acreage.value==''){
+            toastr.error("请填写基地面积！");
+            form.acreage.focus();
+            return false;
+        }if(form.validity.value==''){
+            toastr.error("请填写有效期！");
+            form.validity.focus();
+            return false;
+        }if(form.info.value==''){
+            toastr.error("请填写简介！");
+            form.info.focus();
+            return false;
+        }if(form.environment_report.value==''){
+            toastr.error("请填写环境监测报告！");
+            form.environment_report.focus();
+            return false;
+        }if(form.soil_report.value==''){
+            toastr.error("请填写土壤分析报告！");
+            form.soil_report.focus();
+            return false;
+        }if(form.water_report.value==''){
+            toastr.error("请填写水质监测报告！");
+            form.water_report.focus();
+            return false;
+        }
+        return true;
+    }
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

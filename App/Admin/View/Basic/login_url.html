@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <include file="Public:head" />
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 class="location">登录首页链接管理</h5>&nbsp;&nbsp;<!--<a href="{:u(CONTROLLER_NAME . '/login_url_add')}" style="color:  #00a0e9">[新建]</a>-->
+                    <div class="ibox-tools">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                            <i class="glyphicon glyphicon-list"></i>
+                        </a>
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="{:U('Admin/User/index')}">用户列表</a></li>
+                            <li><a href="{:U('Admin/User/index',array('status'=>4))}">待审核用户列表</a></li>
+                            <li><a href="{:U('Admin/User/index',array('status'=>3))}">已删除用户列表</a></li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <nav class="navbar-default navbar-static-side" role="navigation">
+                        <div class="nav-close"><i class="fa fa-times-circle"></i>
+                        </div>
+                        <div class="sidebar-collapse2">
+                            <ul class="nav" id="side-menu">
+                                <!--1级菜单输出-----开始-->
+                                <volist name="menus" id="vo">
+                                    <if condition="$vo.parent_id eq 0">
+                                    <li>
+                                        <div class="shebs">
+                                        <if condition="$vo.parent_id eq 0">
+                                                <i class="{$vo.icon}"></i>
+                                                <span class="nav-label"><input type="text" id="name_{$vo.id}" value="{$vo.name}" disabled/> </span>
+                                                <span class="nav-label">链接：<input style="width: 435px;" type="text" id="path_{$vo.id}" value="{$vo.path}"
+                                                    <if condition="$vo.id eq 87 || $vo.id eq 88">disabled</if>/> </span>
+                                                <!--<span class="nav-label">图标：<input style="width: 200px;" type="text" id="icon_{$vo.id}" value="{$vo.icon}"/> </span>-->
+                                                <!--<span class="nav-label">排序：<input style="width: 90px;" type="text" id="sort_{$vo.id}" value="{$vo.sort}"/> </span>-->
+                                               <!-- <span class="fa arrow"></span>-->
+                                                <div style="float: right;margin-right: 20px">
+                                                    <div class="left">
+                                                        &nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('update','{$vo.id}','{$vo.status}');">[更新]</span>
+                                                       <!-- <if condition="$vo.status eq 1">
+                                                            &nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('update','{$vo.id}','2');">[禁用]</span>
+                                                            <else/>
+                                                            &nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('update','{$vo.id}','1');">[启用]</span>
+                                                        </if>-->
+                                                        <!--&nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('del','{$vo.id}','{$vo.status}');">[删除]</span>-->
+                                                    </div>
+                                                </div>
+                                        </if>
+                                        </div>
+                                        <!--2级菜单输出-----开始-->
+                                        <ul class="nav nav-second-level">
+                                            <volist name="menus" id="vo1">
+                                                <eq name="vo1.parent_id" value="$vo.id">
+                                                    <li style="border-left: none;border-right: none;padding-left: 48px;">
+                                                        <div class="left">
+                                                            <input type="text" id="name_{$vo1.id}" value="{$vo1.name}" disabled/>
+                                                            <span class="nav-label">链接：<input style="width: 400px;" type="text" id="path_{$vo1.id}" value="{$vo1.path}"/></span>
+                                                            <span class="nav-label"><input style="width: 400px;" type="hidden" id="icon_{$vo1.id}" value=""/> </span>
+                                                            <!--<span class="nav-label">排序：<input style="width: 40px;" type="text" id="sort_{$vo1.id}" value="{$vo1.sort}"/> </span>-->
+                                                        </div>
+                                                        <div class="left">
+                                                            &nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('update','{$vo1.id}','{$vo1.status}');">[更新]</span>
+                                                         <!--   <if condition="$vo1.status eq 1">
+                                                            &nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('update','{$vo1.id}','2');">[禁用]</span>
+                                                                <else/>
+                                                            &nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('update','{$vo1.id}','1');">[启用]</span>
+                                                            </if>-->
+                                                            <!--&nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('del','{$vo1.id}','{$vo1.status}');">[删除]</span>-->
+                                                            <!--&nbsp;&nbsp;<a href="{:u(CONTROLLER_NAME . '/left_menu_add',array('parent_id'=>$vo1['id']))}" style="color:  #00a0e9;padding: 0">[新建下级]</a>-->
+                                                        </div>
+                                                        <div style="clear: both;border-bottom: solid 1px #ccc;"></div>
+                                                        <!--3级菜单输出-----开始-->
+                                                        <volist name="menus" id="vo2">
+                                                            <eq name="vo2.parent_id" value="$vo1.id">
+                                                            <div class="left" style="padding: 0 0 0 18px;">
+                                                                <input type="text" id="name_{$vo2.id}" value="{$vo2.name}"/>
+                                                                <span class="nav-label">链接：<input style="width: 200px;" type="text" id="path_{$vo2.id}" value="{$vo2.path}"/> </span>
+                                                                <span class="nav-label"><input style="width: 200px;" type="hidden" id="icon_{$vo2.id}" value=""/> </span>
+                                                                <!--<span class="nav-label">排序：<input style="width: 40px;" type="text" id="sort_{$vo2.id}" value="{$vo2.sort}"/> </span>-->
+                                                            </div>
+                                                                <div class="left">
+                                                                    &nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('update','{$vo2.id}','{$vo1.status}');">[更新]</span>
+                                                                   <!-- <if condition="$vo2.status eq 1">
+                                                                        &nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('update','{$vo2.id}','2');">[禁用]</span>
+                                                                        <else/>
+                                                                        &nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('update','{$vo2.id}','1');">[启用]</span>
+                                                                    </if>-->
+                                                                    &nbsp;&nbsp;<span style="color:  #00a0e9" onclick="javascript:switchs('del','{$vo2.id}','{$vo1.status}');">[删除]</span>
+                                                                    <!--&nbsp;&nbsp;<a href="{:u(CONTROLLER_NAME . '/left_menu_add',array('parent_id'=>$vo1['id']))}" style="color:  #00a0e9;padding: 0">[新建下级]</a>-->
+                                                                </div>
+                                                                <div style="clear: both"></div>
+                                                            </eq>
+                                                        </volist>
+                                                        <!--3级菜单输出-----结束-->
+                                                        <div style="clear: both;height:5px;"></div>
+                                                    </li>
+                                                </eq>
+                                            </volist>
+                                        </ul>
+                                        <!--2级菜单输出-----结束-->
+                                    </li><br>
+                                    </if>
+                                </volist>
+                                <!--1级菜单输出-----结束-->
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .shebs{padding: 15px;}
+    .shebs input{border: 1px solid #00a0e9}
+    .left{float:left}
+    .right{float:right}
+    .navbar-default .nav>li>a:focus, .navbar-default .nav>li>a:hover{background-color: #fff;  color: #000000;}
+    button, input, optgroup, select, textarea{color: #000;}
+    .navbar-static-side{background: none;}
+    .nav>li.active>a{color: #000000;}
+    .nav>li{border: 1px solid #ccc;}
+    .nav-second-level li:last-child{margin: 0}
+    .nav>li.active{background: none;border-left: 5px solid #00a0e9;}
+    .nav>li:hover{background:none;}
+</style>
+<script>
+    function switchs(tag,id,status){
+        var name = $("#name_"+id).val();
+        var icon = $("#icon_"+id).val();
+        var path = $("#path_"+id).val();
+        var sort = $("#sort_"+id).val();
+        if(tag == "del"){
+            if (confirm("确定要删除吗？")){
+            }else{
+                return false;
+            }
+        }
+            $.ajax({
+            url:"{:U('Basic/switchs')}",
+            type:"POST",
+            dataType:"json",
+            data:"tag="+tag+"&id="+id+"&name="+name+"&icon="+icon+"&path="+path+"&status="+status+"&sort="+sort,
+            success:function(res){
+                if(res.res == 'success'){
+                    toastr.success("操作成功！");
+                    setTimeout("location.reload();","1500");
+                }else{
+                    toastr.error("操作失败！");
+                }
+            }
+        });
+    }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <include file="Product:nav" />
+                    <div class="ibox-title">
+                        <a href="{:u('Admin/Product/index_manure',array('m'=>manure,'product_id'=>$_GET['product_id']))}">  <h5>返回列表</h5></a>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="id" name="id"  type="hidden" value="{$product.manure_id}">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <script src="_js_/plugins/layer/laydate/laydate.js"></script>
+                                <label class="col-sm-2 control-label">施肥时间</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                        <div class="col-sm-10">
+                                            <input name="manure_time" value="{$product.manure_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                            <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                            <label class="laydate-icon"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">时期</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <select id="period" name="period" data-placeholder="请选择{$period[0]['name']}..." class="chosen-select" style="width:350px;" tabindex="2">
+                                            <option value="">请选择{$period[0]['name']}</option>
+                                            <volist name="stage_list" id="vo">
+                                                <option <if condition="$vo['stage_id'] eq $product['period']"> selected="selected" </if> value="{$vo.stage_id}">{$vo.stage_name}</option>
+                                            </volist>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">肥料名称</label>
+                                <div class="col-sm-10">
+                                    <input id="name" name="name"  type="text" class="form-control" placeholder="名称" value="{$product.name}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$kind[0]['name']}</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <select id="kind" name="kind" data-placeholder="请选择{$kind[0]['name']}..." class="chosen-select" style="width:350px;" tabindex="2">
+                                            <option value="">请选择{$kind[0]['name']}</option>
+                                            <volist name="kind[0]['data']" id="vo">
+                                                <option <if condition="$vo['tag_id'] eq $product['kind']"> selected="selected" </if> value="{$vo.tag_id}">{$vo.name}</option>
+                                            </volist>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用量</label>
+                                <div class="col-sm-10">
+                                    <input id="dosage" name="dosage"  type="text" class="form-control" value="{$product['dosage']}" placeholder="千克/亩">
+                                </div>
+                            </div>
+                            <!--引入-品牌-生产商-销售商---开始-->
+                            <include file="Product:common_pre_jgpt" />
+                            <!--引入-品牌-生产商-销售商---结束-->
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button type="submit" class="btn btn-primary" onclick="T_submit();">提交</button>
+                                    <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.manure_time.value==''){
+            toastr.error("请选择时间！");
+            form.manure_time.focus();
+            return false;
+        }if(form.period.value==''){
+            toastr.error("请选择时期！");
+            form.period.focus();
+            return false;
+        }if(form.name.value==''){
+            toastr.error("请填写名称！");
+            form.name.focus();
+            return false;
+        }if(form.brand.value==''){
+            toastr.error("请选择肥料品牌！");
+            form.brand.focus();
+            return false;
+        }if(form.kind.value==''){
+            toastr.error("请选择肥料种类！");
+            form.kind.focus();
+            return false;
+        }if(form.dosage.value==''){
+            toastr.error("请填写用量！");
+            form.dosage.focus();
+            return false;
+        }if(form.manufacturer.value==''){
+            toastr.error("请选择生厂商！");
+            form.manufacturer.focus();
+            return false;
+        }if(form.retailer.value==''){
+            toastr.error("请选择销售商！");
+            form.retailer.focus();
+            return false;
+        }
+        return true;
+    }
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

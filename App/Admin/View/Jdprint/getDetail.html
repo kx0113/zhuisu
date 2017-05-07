@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/project_detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+<head>
+<include file="Public:head" />
+<script language="javascript">
+function ppppp(oper)
+{
+if (oper < 10){
+bdhtml=window.document.body.innerHTML;/ /获取当前页的html代码
+sprnstr="<!--startprint"+oper+"-->";/ /设置打印开始区域
+eprnstr="<!--endprint"+oper+"-->";/ /设置打印结束区域
+prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); / /从开始代码向后取html
+prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));/ /从结束代码向前取html
+window.document.body.innerHTML=prnhtml;
+window.print();
+window.document.body.innerHTML=bdhtml;
+} else {
+window.print();
+}
+}
+</script>
+<style>
+.dl-horizontal dt,.dl-horizontal dd{
+	margin-bottom:5px;
+}
+input[name=button_export]{
+	border:none;
+	background:#1ab394;
+	color:#fff;
+	padding:0 20px;
+	border-radius:3px;
+	line-height: 30px;
+	
+}
+
+</style>
+</head>
+
+<body class="gray-bg">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="wrapper wrapper-content animated fadeInUp">
+            <!--startprint1-->
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="m-b-md">
+                                    
+                                    <h2 style='font-size:20px;'>农产品安全质量追溯卡</h2>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-7" style='padding-top:12px'>
+                                <dl class="dl-horizontal">
+                                	<dt>产品名称：</dt>
+                                    <dd><span class="label label-primary">{$mes.pro_name}</span></dd>
+                                    <dt>企业名称：</dt>
+                                    <dd>{$mes.company_name}</dd>
+                                    <dt>联系电话：</dt>
+                                    <dd>{$mes.mobile}</dd>
+                                    <dt>溯源码：</dt>
+                                    <dd><a href="#" class="text-navy"> {$mes.sid}</a>
+                                    </dd>
+                                    
+                                </dl>
+                                
+                            </div>
+                           <div class="col-sm-5">
+                                <dl class="dl-horizontal">
+                                    <img src="/index.php/Home/Quality/ewm?sid={$mes.sid}"/>
+                                    
+                                </dl>
+                                
+                            </div>
+                        </div>
+                       
+ 						<input type='button' name='button_export' title='打印1'  value="打印" />
+                    </div>
+                </div>
+            <!--endprint1-->
+            </div>
+            <!-- <input  type=button name='button_export' title='打印1' onclick=window.print() value="11" />
+            <a href="#" onClick=window.print()><b>打印本页</b></a> -->
+        </div>
+        
+    </div>
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/content.min.js?v=1.0.0"></script>
+    <script>
+    	$('input[type=button]').on('click',function(){
+    		window.print();
+    		
+    	})
+        $(document).ready(function(){$("#loading-example-btn").click(function(){btn=$(this);simpleLoad(btn,true);simpleLoad(btn,false)})});function simpleLoad(btn,state){if(state){btn.children().addClass("fa-spin");btn.contents().last().replaceWith(" Loading")}else{setTimeout(function(){btn.children().removeClass("fa-spin");btn.contents().last().replaceWith(" Refresh")},2000)}};
+    </script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+
+</body>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/project_detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+</html>

@@ -1,0 +1,8 @@
+<div class="tabs-container">
+    <ul class="nav nav-tabs">
+        <li <if condition="$cz eq 'health'"> class="active"</if> ><a  href="__CONTROLLER__/healthList/menu_id/{$_GET['menu_id']}" aria-expanded="true"> 环境卫生检查</a></li>
+
+        <li <if condition="$cz eq 'tool'"> class="active"</if> ><a href="__CONTROLLER__/toolList/menu_id/{$_GET['menu_id']}">人员工具消毒记录</a></li>
+
+    </ul>
+</div>

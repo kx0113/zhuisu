@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="_js_/echarts.common.min.js"></script>
+    <include file="Public:head" />
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 class="location">农药使用统计报表</h5>
+                    <div class="ibox-tools">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                            <i class="glyphicon glyphicon-list"></i>
+                        </a>
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+             <form method="post">
+                	<div class="form-group" style="width:230px;display:inline-block;">
+                                <label class="col-sm-2 " >区域</label>
+
+                                <div class="col-sm-10" >
+                                    <select class="form-control m-b" name="plant_area">
+                                        <volist name="areas" id="vo">
+                                        	<option value="{$vo.id}" <if condition="$qy eq $vo['id']">selected</if>>{$vo.area_name}</option>
+                                        </volist>
+                                    </select>
+                                </div>
+                    </div>
+                    <div class="form-group" style="width:230px;display:inline-block;">
+                                <label class="col-sm-2 control-label" >类别</label>
+
+                                <div class="col-sm-10" >
+                                    <select class="form-control m-b" name="pro_type">
+                                        <volist name="pro_type[0]['data']" id="vo">
+                                        	<option value="{$vo.tag_id}" <if condition="$lb eq $vo['tag_id']">selected</if>>{$vo.name}</option>
+                                        </volist>
+                                    </select>
+                                </div>
+                    </div>
+                	<div class="form-group" style="width:230px;display:inline-block;">
+                                <label class="col-sm-2 control-label" >年份</label>
+
+                                <div class="col-sm-10" >
+                                    <select class="form-control m-b" name="plant_year">
+                                        <volist name="year.0.data" id="vo">
+                                        	<option value="{$vo.tag_id}" <if condition="$nf eq $vo['tag_id']">selected</if>>{$vo.name}</option>
+										</volist>
+                                    </select>
+                                </div>
+                    </div>
+                    <div class="form-group" style="display:inline-block;">
+                    	<button class="btn btn-primary  "  type="submit"><strong>统计</strong></button>
+                    </div>
+             </form>
+                    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    				<div id="main" style="width: 600px;height:400px;"></div>
+                       
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '农药使用统计'
+            },
+            tooltip: {},
+            legend: {
+                data:['使用次数']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: {readOnly: false},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                data: [<volist name="fun" id="vo">"{$vo.stage_name}",</volist>]
+            },
+            yAxis: {},
+            series: [{
+                name: '使用次数',
+                type: 'bar',
+                data: [<volist name="fun" id="vo">{$vo.sum(number)},</volist>]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script>
+    $(document).ready(function(){$(".dataTables-example").dataTable();var oTable=$("#editable").dataTable();oTable.$("td").editable("http://www.zi-han.net/theme/example_ajax.php",{"callback":function(sValue,y){var aPos=oTable.fnGetPosition(this);oTable.fnUpdate(sValue,aPos[0],aPos[1])},"submitdata":function(value,settings){return{"row_id":this.parentNode.getAttribute("id"),"column":oTable.fnGetPosition(this)[2]}},"width":"90%","height":"100%"})});function fnClickAddRow(){$("#editable").dataTable().fnAddData(["Custom row","New row","New row","New row","New row"])};
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="{:U('Basic/wxpay')}" id="search-form">
+        <span>输入金额&nbsp;&nbsp;</span><input type="text" name="val" onkeyup="value=value.replace(/[^\d.]/g,'')">
+        <button type="submit">结算</button>
+    </form>
+    <img alt="模式二扫码支付" src="http://paysdk.weixin.qq.com/example/qrcode.php?data=<?php echo urlencode($url2);?>" style="width:150px;height:150px;"/>
+</body>
+</html>

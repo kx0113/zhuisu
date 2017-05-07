@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="_css_/main/img/favicon.png">
+    <title>Clean Zone</title>
+    <include file="Public:head" />
+
+    <!--<link href="_css_/main/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link href="_css_/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">-->
+    <!--<link rel="stylesheet" type="text/css" href="_css_/main/bootstrap-datetimepicker.min.css"> &lt;!&ndash; 日历 &ndash;&gt;-->
+    <link href="_css_/main/style.css" rel="stylesheet">
+    <style type="text/css">
+        #cl-wrapper {
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="cl-wrapper" class="fixed-menu">
+    <!--Sidebar item function-->
+    <!--Sidebar sub-item function-->
+    <div id="pcont" class="container-fluid">
+        <div class="cl-mcont">
+            <div class="stats_bar">
+                <div data-step="2" data-intro="&lt;strong&gt;Beautiful Elements&lt;/strong&gt; &lt;br/&gt; If you are looking for a different UI, this is for you!." class="butpro butstyle">
+                    <div class="sub" onclick="location.href='{:u('Region/index',array('menu_id'=>98))}'">
+                        <h2>基地数量</h2><span id="totasl_clientes">{$region_count}</span>
+                    </div>
+                    <!--<div class="stat"><span class="spk1">
+                  <canvas style="display: inline-block; width: 74px; height: 16px; vertical-align: top;" width="74" height="16"></canvas></span></div>-->
+                </div>
+                <div data-step="2" data-intro="&lt;strong&gt;Beautiful Elements&lt;/strong&gt; &lt;br/&gt; If you are looking for a different UI, this is for you!." class="butpro butstyle">
+                    <div class="sub" onclick="location.href='{:u('company/index',array('menu_id'=>78))}'">
+                        <h2>企业数量</h2><span id="total_clientes">{$company_count}</span>
+                    </div>
+                    <!--<div class="stat"><span class="spk1">
+                  <canvas style="display: inline-block; width: 74px; height: 16px; vertical-align: top;" width="74" height="16"></canvas></span></div>-->
+                </div>
+                <div class="butpro butstyle">
+                    <div class="sub" onclick="location.href='{:u('Quality/index',array('menu_id'=>117))}'">
+                        <h2>溯源码数量</h2><span>{$base_base_count}</span>
+                    </div>
+                    <!--<div class="stat"><span class="up"> 13,5%</span></div>-->
+                </div>
+                <div class="butpro butstyle">
+                    <div class="sub" onclick="location.href='{:u('Commodity/index',array('menu_id'=>124))}'">
+                        <h2>产品数量</h2><span>{$commodity_count}</span>
+                    </div>
+                    <!--<div class="stat"><span class="down"> 20,7%</span></div>-->
+                </div>
+            </div>
+            <div class="row dash-cols">
+            </div>
+            <div class="row dash-cols">
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="_css_/main/cleanzone.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=700b132845ef5b0b135066dfa0222a37"></script>
+<script type="text/javascript" src="_css_/main/jquery.sparkline.min.js"></script><!-- 小图表 -->
+<script type="text/javascript" src="_css_/main/jquery.flot.js"></script><!-- 大图表 -->
+<script type="text/javascript" src="_css_/main/jquery.flot.pie.js"></script>
+<script type="text/javascript" src="_css_/main/jquery.flot.resize.js"></script>
+<script type="text/javascript" src="_css_/main/jquery-ui.min.js"></script>
+<script type="text/javascript" src="_css_/main/page-dashboard.js"></script>
+<!--百度地图---start-->
+<script type="text/javascript">
+    $(document).ready(function(){
+        //initialize the javascript
+        App.init();
+        App.dashboard();
+    });
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point(132.517929, 47.64819);
+    map.centerAndZoom(point, 13);
+    var mapType1 = new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP]});
+    var mapType2 = new BMap.MapTypeControl({anchor: BMAP_ANCHOR_TOP_LEFT});
+    var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL});
+    // map.addControl(mapType1)
+    map.addControl(mapType2)
+    map.addControl(top_right_navigation)
+    var marker = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker);               // 将标注添加到地图中
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+</script>
+<!--百度地图---end-->
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta name="Generator" content="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>质量追溯-检验检测</title>
+    <meta http-equiv="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <link rel="stylesheet" type="text/css" href="_Home.css_/public.css"/>
+    <link rel="stylesheet" type="text/css" href="_Home.css_/index.css"/>
+    <script type="text/javascript" src="_Home.js_/jquery-1.7.2.js"></script>
+
+
+</head>
+<body>
+<div id="page" class="showpage">
+    <div>
+        <header id="header">
+            <span href="javascript:void(0)" class="logo">质量追溯-溯源码{$baseinfo['sid']}</span>
+        </header>
+        <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>定量检测
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div>
+                    <ul>
+                    <volist name="list_ration" id="vo">
+                        <li>
+                                <dl>
+                                    <dd>产品批次：<span class="label label-primary">{$vo.product_batch}</span></dd>
+                                    <dd>产品名称：{$vo.product_name}</dd>
+                                    <dd>产地编号：{$vo.origin_num}</dd>
+                                    <dd>产地名称：{$vo.origin}</dd>
+                                    <dd>ph值：{$vo.ph_val}</dd>
+                                    <dd>吸光值：{$vo.light_val}</dd>
+                                    <dd>是否合格：<if condition="$vo['is_qualified'] eq 1 ">合格<else/>不合格</if></dd>
+                                    <dd>检测人：{$vo.test_user}</dd>
+                                    <dd>检测类型：{$vo.test_type}</dd>
+                                    <dd>检测日期：{$vo.test_date}</dd>
+                                </dl>
+                        </li>
+                    </volist>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>农残速测
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div>
+
+                    <ul>
+                        <volist name="list_pesticide" id="vo">
+                            <li>
+                                <dl>
+                                        <dd>产品批次：<span class="label label-primary">{$vo.product_batch}</span></dd>
+                                        <dd> 产品名称： {$vo.product_name}</dd>
+                                        <dd>产地编号：{$vo.origin_num}</dd>
+                                        <dd>产地名称：{$vo.origin}</dd>
+                                        <dd>抑制率：{$vo.inhibition_rate}</dd>
+                                        <dd>是否合格：<if condition="$vo['is_qualified'] eq 1 ">合格<else/>不合格</if></dd>
+                                        <dd>检测人：{$vo.test_user}</dd>
+                                        <dd>检测类型：{$vo.test_type}</dd>
+                                        <dd>检测日期：{$vo.test_date}</dd>
+                                </dl>
+                            </li>
+                        </volist>
+
+                    </ul>
+                </div>
+            </div>
+        </section>
+       <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>PH原始测定记录
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div>
+
+                    <ul>
+                        <volist name="list_ph" id="vo">
+                            <li>
+                                    <dl>
+                                        <dd>产品批次：<span class="label label-primary">{$vo.product_batch}</span></dd>
+                                        <dd>送样单位：{$vo.sample_unit}</dd>
+                                        <dd>分析编号：{$vo.analysisnum}</dd>
+                                        <dd>土重：{$vo.soil}</dd>
+                                        <dd>仪器型号：{$vo.instrument}</dd>
+                                        <dd>ph测定值第一次：{$vo.ph_val1}</dd>
+                                        <dd>ph测定值第二次：{$vo.ph_val2}</dd>
+                                        <dd>检测人：{$vo.test_user}</dd>
+                                        <dd>检测方法：{$vo.test_method}</dd>
+                                        <dd>检测日期：{$vo.test_date}</dd>
+                                    </dl>
+
+
+                           </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+           </section>
+        <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>滴定法测定原始记录
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div>
+
+                    <ul>
+                        <volist name="list_titration" id="vo">
+                            <li>
+                                <dl>
+                                       <dd>产品批次：<span class="label label-primary">{$vo.product_batch}</span></dd>
+                                       <dd>送样单位：{$vo.sample_unit}</dd>
+                                       <dd>分析编号：{$vo.analysisnum}</dd>
+                                       <dd>水分系数：{$vo.water_coefficient}</dd>
+                                       <dd> 风干样重：{$vo.dry1}</dd>
+                                       <dd>烘干样重：{$vo.dry2}</dd>
+                                       <dd>定容体积：{$vo.volume}</dd>
+                                       <dd>分取倍数：{$vo.multiple}</dd>
+                                       <dd>滴定剂浓度：{$vo.titration}</dd>
+                                       <dd>计算结果：{$vo.result}</dd>
+                                       <dd>样品处理方法：{$vo.processe_method}</dd>
+                                       <dd>检测人：{$vo.test_user}</dd>
+                                       <dd>检测日期：{$vo.test_date}</dd>
+                                    </dl>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+           </section>
+        <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>光度法测定记录
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div>
+
+                    <ul>
+                        <volist name="list_luminosity" id="vo">
+                            <li>
+                                <dl>
+                                        <dd>产品批次：<span class="label label-primary">{$vo.product_batch}</span></dd>
+                                       <dd>送样单位：{$vo.sample_unit}</dd>
+                                       <dd>测定项目：{$vo.measure_item}</dd>
+                                       <dd>分析编号：{$vo.analysisnum}</dd>
+                                       <dd>水分：{$vo.water}</dd>
+                                       <dd>样品重量：{$vo.sample_weight}</dd>
+                                       <dd>制待测液：{$vo.extracting}</dd>
+                                       <dd>分取倍数：{$vo.multiple}</dd>
+                                       <dd>测定体积：{$vo.volume}</dd>
+                                       <dd>读数：{$vo.reading}</dd>
+                                       <dd>待测液浓度：{$vo.titration}</dd>
+                                       <dd>计算结果：{$vo.result}</dd>
+                                       <dd>测定方法：{$vo.test_method}</dd>
+                                       <dd>检测人：{$vo.test_user}</dd>
+                                       <dd>测定日期：{$vo.test_date}</dd>
+
+                                    </dl>
+                            </li>
+                        </volist>
+
+                    </ul>
+                </div>
+            </div>
+           </section>
+
+
+        <div class="floor_body2" >
+            <h2>————&nbsp;质量追溯&nbsp;————</h2>
+        </div>
+        <script>
+            function goTop(){
+                $('html,body').animate({'scrollTop':0},600);
+            }
+        </script>
+        <a href="javascript:goTop();" class="gotop"><img src="_Home.images_/topup.png"></a>
+    </div>
+
+</div>
+</body>
+</html>

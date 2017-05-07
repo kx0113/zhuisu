@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <include file="Public:head" />
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                    <include file="Product:nav" />
+                <div class="ibox-content">
+                    <!--<if condition="$user_find.user_id ELT 2">--> <!--</if>-->
+                    <div style="margin-bottom: 10px;">
+                        <a href="{:u('Admin/Product/add_plant',array('m'=>plant,'product_id'=>$_GET['product_id']))}"><button type="button" class="btn btn-w-m btn-info">监控新建</button></a>
+						<a href="{:u('Admin/Product/add_plant_local',array('m'=>plant,'product_id'=>$_GET['product_id']))}"><button type="button" class="btn btn-w-m btn-info">本地新建</button></a>
+                    </div>
+                        <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>区域</th>
+                            <th>设备名称</th>
+                            <th>设备编号</th>
+                            <th>增加时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="product_plant_list" id="vo">
+                        <tr class="gradeX">
+                            <td>{$vo.plant_id}</td>
+                            <td><if condition="$vo.device_id eq 99999">本地新建（暂无）<else/>{$vo.area}</if></td>
+                            <td><if condition="$vo.device_id eq 99999">本地新建（暂无）<else/>{$vo.device_name}</if></td>
+                            <td><if condition="$vo.device_id eq 99999">本地新建（暂无）<else/>{$vo.device_num}</if></td>
+                            <td>{$vo.addtime}</td>
+                            <td class="center">
+                            <if condition="$vo.device_id eq 99999">
+                                <a class="btn btn-primary" href="{:u('Admin/Product/add_plant_local',array('m'=>plant,'plant_id'=>$vo['plant_id'],'product_id'=>$_GET['product_id']))}">编辑</a>&nbsp;&nbsp;
+                                <else/>
+                                <a class="btn btn-primary"href="{:u('Admin/Product/add_plant',array('m'=>plant,'plant_id'=>$vo['plant_id'],'product_id'=>$_GET['product_id']))}">编辑</a>&nbsp;&nbsp;
+                            </if>
+                            <a class="del btn btn-danger" onclick="javascript:switchs('common_delete','product_plant','plant_id','{$vo.plant_id}','a','b');">删除</a>&nbsp;&nbsp;
+                            </td>
+                        </tr>
+                        </volist>
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script>
+    $(document).ready(function(){$(".dataTables-example").dataTable();var oTable=$("#editable").dataTable();oTable.$("td").editable("http://www.zi-han.net/theme/example_ajax.php",{"callback":function(sValue,y){var aPos=oTable.fnGetPosition(this);oTable.fnUpdate(sValue,aPos[0],aPos[1])},"submitdata":function(value,settings){return{"row_id":this.parentNode.getAttribute("id"),"column":oTable.fnGetPosition(this)[2]}},"width":"90%","height":"100%"})});function fnClickAddRow(){$("#editable").dataTable().fnAddData(["Custom row","New row","New row","New row","New row"])};
+</script>
+</body>
+</html>

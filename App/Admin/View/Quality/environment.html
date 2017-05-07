@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/project_detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+<head>
+<include file="Public:head" />
+<style>
+.dl-horizontal dt,.dl-horizontal dd{
+	margin-bottom:5px;
+}
+input[name=button_export]{
+	border:none;
+	background:#1ab394;
+	color:#fff;
+	padding:0 20px;
+	border-radius:3px;
+	line-height: 30px;
+	
+}
+
+</style>
+</head>
+
+<body class="gray-bg">
+
+<div class="row">
+        <div class="col-sm-12">
+            <div class="wrapper wrapper-content animated fadeInUp">
+            <!--startprint1-->
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="m-b-md">
+
+                                    <h2 style='font-size:20px;'>溯源码：{$sid}</h2>
+                                    <h2 style='font-size:20px;'>采收批次：{$cspc}</h2>
+                                </div>
+                                <div class="m-b-md">
+
+                                    <h2 style='font-size:20px;'>产地空气质量记录</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <if condition="$air_info neq null">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <dl class="dl-horizontal">
+                                    <dt>产地编号：</dt>
+                                    <dd>{$air_info.place_id}</dd>
+                                    <dt>产地名称：</dt>
+                                    <dd>{$air_info.place_name}</dd>
+                                    <dt>总悬浮颗粒物：</dt>
+                                    <dd>{$air_info.total_particulate}</dd>
+                                    <dt>二氧化硫（SO2）日均（标准状态）：</dt>
+                                    <dd>{$air_info.so2_day}</dd>
+                                    <dt>二氧化硫（SO2）1h均（标准状态：</dt>
+                                    <dd>{$air_info.so2_hour}</dd>
+                                    <dt>氮氧化合物：</dt>
+                                    <dd>{$air_info.compound}</dd>
+                                    </dl>
+                                </div>
+                            <div class="col-sm-5">
+                                <dl class="dl-horizontal">
+                                    <dt>氟化物(F-)：</dt>
+                                    <dd>{$air_info.f}</dd>
+                                    <dt>铅(Pb)(标准状态)：</dt>
+                                    <dd>{$air_info.pb}</dd>
+                                    <dt>PM10：</dt>
+                                    <dd>{$air_info.pb}</dd>
+                                    <dt>检测机构：</dt>
+                                    <dd>{$air_info.test_firm}</dd>
+                                    <dt>检测时间：</dt>
+                                    <dd>{$air_info.test_time}</dd>
+                                    <dt>检测评价：</dt>
+                                    <dd>{$air_info.test_evaluate}</dd>
+                                </dl>
+                            </div>
+                            </div>
+                        </if>
+                    </div>
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="m-b-md">
+
+                                        <h2 style='font-size:20px;'>产地土壤质量记录</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <if condition="$soil_info neq null">
+                            <div class="row">
+                                    <div class='col-sm-5'>
+                                    <dl class="dl-horizontal">
+                                        <dt>产地编号：</dt>
+                                        <dd>{$soil_info.place_id}</dd>
+                                        <dt>产地名称：</dt>
+                                        <dd>{$soil_info.place_name}</dd>
+                                        <dt>土壤ph值：</dt>
+                                        <dd>{$soil_info.soil_ph}</dd>
+                                        <dt>阳离子交换量：</dt>
+                                        <dd>{$soil_info.cation}</dd>
+                                        <dt>镉（Cd）：</dt>
+                                        <dd>{$soil_info.cd}</dd>
+                                        <dt>汞（Hg）：</dt>
+                                        <dd>{$soil_info.hg}</dd>
+                                        <dt>砷（As）：</dt>
+                                        <dd>{$soil_info.as}</dd>
+                                        <dt>铅（Pb）：</dt>
+                                        <dd>{$soil_info.pb}</dd>
+                                    </dl>
+                                    </div>
+                                    <div class='col-sm-5'>
+                                    <dl class="dl-horizontal">
+                                        <dt>铬（Cr）：</dt>
+                                        <dd>{$soil_info.cr}</dd>
+                                        <dt>锌（Zn）：</dt>
+                                        <dd>{$soil_info.zn}</dd>
+                                        <dt>镍（Ni）：</dt>
+                                        <dd>{$soil_info.ni}</dd>
+                                        <dt>铜（Cu）：</dt>
+                                        <dd>{$soil_info.cu}</dd>
+                                        <dt>检测机构：</dt>
+                                        <dd>{$soil_info.test_firm}</dd>
+                                        <dt>检测时间：</dt>
+                                        <dd>{$soil_info.test_time}</dd>
+                                        <dt>检测评价：</dt>
+                                        <dd>{$soil_info.test_evaluate}</dd>
+                                    </dl>
+                                    </div>
+                                </div>
+                                </if>
+                        </div>
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="m-b-md">
+
+                                            <h2 style='font-size:20px;'>产地土壤农药残留量记录</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <if condition="$residue_info neq null">
+                                <div class="row">
+                                   <div class="col-sm-5">
+                                        <dl class="dl-horizontal">
+                                            <dt>产地编号：</dt>
+                                            <dd>{$residue_info.place_id}</dd>
+                                            <dt>产地名称：</dt>
+                                            <dd>{$residue_info.place_name}</dd>
+                                            <dt>豆磺隆：</dt>
+                                            <dd>{$residue_info.chlorimuron}</dd>
+                                            <dt>普施特：</dt>
+                                            <dd>{$residue_info.imazethapyr}</dd>
+                                            <dt>氧乐果：</dt>
+                                            <dd>{$residue_info.omethoate}</dd>
+                                            <dt>丙草胺：</dt>
+                                            <dd>{$residue_info.pretilachlor}</dd>
+                                            </dl>
+                                       </div>
+                                    <div class="col-sm-5">
+                                        <dl class="dl-horizontal">
+                                            <dt>丁草胺：</dt>
+                                            <dd>{$residue_info.butachlor}</dd>
+                                            <dt>莠去津：</dt>
+                                            <dd>{$residue_info.atrazine}</dd>
+                                            <dt>检测机构：</dt>
+                                            <dd>{$residue_info.test_firm}</dd>
+                                            <dt>检测时间：</dt>
+                                            <dd>{$residue_info.test_time}</dd>
+                                            <dt>检测评价：</dt>
+                                            <dd>{$residue_info.test_evaluate}</dd>
+                                        </dl>
+                                    </div>
+                                    </div>
+                                    </if>
+                            </div>
+
+                            <div class="ibox">
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="m-b-md">
+
+                                                <h2 style='font-size:20px;'>产地灌溉水质量记录</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <if condition="$irrigation_info neq null">
+                                    <div class="row">
+                                       <div class="col-sm-5">
+                                            <dl class="dl-horizontal">
+                                                <dt>产地编号：</dt>
+                                                <dd>{$irrigation_info.place_id}</dd>
+                                                <dt>产地名称：</dt>
+                                                <dd>{$irrigation_info.place_name}</dd>
+                                                <dt>pH值：</dt>
+                                                <dd>{$irrigation_info.ph}</dd>
+                                                <dt>氯化物（CL-）：</dt>
+                                                <dd>{$irrigation_info.cl}</dd>
+                                                <dt>总汞：</dt>
+                                                <dd>{$irrigation_info.thg}</dd>
+                                                <dt>总镉：</dt>
+                                                <dd>{$irrigation_info.tcd}</dd>
+                                                <dt>总砷：</dt>
+                                                <dd>{$irrigation_info.tas}</dd>
+                                                <dt>总铅：</dt>
+                                                <dd>{$irrigation_info.tpb}</dd>
+                                                <dt>总铬：</dt>
+                                                <dd>{$irrigation_info.cr6}</dd>
+                                                </dl>
+                                           </div>
+                                           <div class="col-sm-5">
+                                           <dl class="dl-horizontal">
+                                                <dt>氰化物：</dt>
+                                                <dd>{$irrigation_info.cyanide}</dd>
+                                                <dt>氟化物：</dt>
+                                                <dd>{$irrigation_info.f}</dd>
+                                                <dt>石油类：</dt>
+                                                <dd>{$irrigation_info.petroleum}</dd>
+                                                <dt>挥发酚：</dt>
+                                                <dd>{$irrigation_info.phenol}</dd>
+                                                <dt>六价铬：</dt>
+                                                <dd>{$irrigation_info.sixcd}</dd>
+                                                <dt>检测机构：</dt>
+                                                <dd>{$irrigation_info.test_firm}</dd>
+                                                <dt>检测时间：</dt>
+                                                <dd>{$irrigation_info.test_time}</dd>
+                                                <dt>检测评价：</dt>
+                                                <dd>{$irrigation_info.test_evaluate}</dd>
+                                            </dl>
+                                        </div>
+                                        </div>
+                                        </if>
+                                </div>
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/content.min.js?v=1.0.0"></script>
+    <script>
+    	$('input[type=button]').on('click',function(){
+    		window.print();
+    		
+    	})
+        $(document).ready(function(){$("#loading-example-btn").click(function(){btn=$(this);simpleLoad(btn,true);simpleLoad(btn,false)})});function simpleLoad(btn,state){if(state){btn.children().addClass("fa-spin");btn.contents().last().replaceWith(" Loading")}else{setTimeout(function(){btn.children().removeClass("fa-spin");btn.contents().last().replaceWith(" Refresh")},2000)}};
+    </script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+
+</body>
+
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/project_detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+</html>

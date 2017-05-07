@@ -1,0 +1,132 @@
+<nav class="navbar navbar-default asdfasdf" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div style="width:278px" class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a style="color: #fff;position: relative" class="navbar-brand" href="{:u('/admin/Index/index')}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;全息过程溯源管理系统</a>
+            <img style="position:absolute;left:12px;top:3px;border-radius: 7px; margin-top: 6px;" alt="image" width="32" src="_images_/vf_015.png" />
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navdf">
+                <li style="border-bottom: none;border-top: none;background:#17c127;" ><a  style="color: #fff;" href="{:u('/admin/Index/index')}">首页</a></li>
+                <!--<li style="border-bottom: none;border-top: none" ><a style="color: #fff;" href="#">Link</a></li>-->
+                <!--<li style="border-bottom: none;border-top: none"  class="dropdown">-->
+                    <!--<a style="color: #fff;"href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>-->
+                    <!--<ul class="dropdown-menu" role="menu">-->
+                        <!--<li><a href="#">Action</a></li>-->
+                        <!--<li><a href="#">Another action</a></li>-->
+                        <!--<li><a href="#">Something else here</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#">Separated link</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#">One more separated link</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            </ul>
+            <ul class="nav navbar-nav navbar-right navdf">
+                <!--<li style="border-bottom: none;border-top: none" ><a style="color: #fff;" href="#">Link</a></li>-->
+                <li style="border-bottom: none;border-top: none" ><img style="border-radius: 7px; margin-top: 9px;" alt="image" width="32" src="_images_/vf_013.png" /></li>
+                <li style="border-bottom: none;border-top: none"  class="dropdown">
+                    <a style="color: #fff;" href="#" class="dropdown-toggle" data-toggle="dropdown">{$user_find.account} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <!--<li><a  href="#">Action</a></li>-->
+                        <!--<li><a href="#">Another action</a></li>-->
+                        <li> <a id="modifi_password"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;&nbsp;密码修改</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{:u('/admin/login/loginout')}"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;&nbsp;退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div id="modifi_password_a" style="  display: none ;position: absolute;width: 300px;background: rgb(255, 255, 255);border: 1px solid rgb(0, 153, 153);top: 108px;right: 35px;height: 272px;">
+    <form method="post" name="form">
+        <br>
+        <center style="color: #009999"><h4>用户更改密码</h4></center>
+        <br>
+        <div style="margin-left: 20px">旧密码&nbsp;：&nbsp;&nbsp;<input type="password" id="pass" placeholder="请输入旧密码"/></div>
+        <br>
+        <div style="margin-left: 20px">新密码&nbsp;：&nbsp;&nbsp;<input type="password" name="password" id="password1"  placeholder="请输入新密码"/></div>
+        <br>
+        <div style="margin-left: 20px">再次输入：<input type="password" name="password2" id="password2" placeholder="请再次输入新密码"/></div>
+        <br>
+        <div style="width: 50%;margin: 0 auto">
+            <a id="btn-login" class="btn btn-primary" >修改</a>
+            <a class="btn btn-white" id="modifi_password_b">取消</a>
+        </div>
+    </form>
+</div>
+<!--密码修改-->
+<script type="text/javascript">
+    $(function () {
+        $(".navdf li a").hover(function(){
+            $(".navdf li a").css("background","none");
+        });
+        $('#modifi_password').click(function () {
+            $("#modifi_password_a").toggle();
+        });
+        $('#modifi_password_b').click(function () {
+            $("#modifi_password_a").toggle();
+        });
+        document.onkeydown = function (event) {
+            var theEvent = window.event || event;
+            var code = theEvent.keyCode || theEvent.which;
+            if (code == 13) {
+                modifi_password(event);
+            }
+        }
+        $('#btn-login').click(function (event) {
+            modifi_password(event);
+        });
+    });
+    function  modifi_password(event){
+        var $pass = $('#pass').val();
+        var $password1 = $('#password1').val();
+        var $password2 = $('#password2').val();
+        if (!$pass) {
+            toastr.error("您没有输入原密码！");
+            return false;
+        }
+        if (!$password1) {
+            toastr.error("您没有输入新密码！");
+            return false;
+        }
+        if ($password1.length<6) {
+            toastr.error("新密码至少为6位，请重新输入！");
+            return false;
+        }
+        if ($password1 != $password2) {
+            toastr.error("你两次输入的密码不一致，请重新输入！");
+            return false;
+        }
+        var login_param = {
+            pass: $pass,
+            password: $password1
+        };
+        $.post("../Admin/User/modifi_password", login_param, function (data) {
+            if (data.result == 'success') {
+                toastr.success("密码修改成功，请牢记新密码！");
+                setTimeout(function(){
+                    location.reload()
+                }, 3000);
+            }else if(data.result == 'no'){
+                toastr.error("原密码不正确！");
+            }else{
+                toastr.error("不存在该账号的用户资料！");
+            }
+        }, "json");
+        return false;
+    }
+</script>
+<!--密码修改-->
+<style>
+    .asdfasdf{margin: 0;background:url("_images_/top-bg.jpg");}
+</style>

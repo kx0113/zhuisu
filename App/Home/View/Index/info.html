@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="_Home.css_/main.css">
+        <link rel="stylesheet" type="text/css" href="_Home.css_/css.css">
+        <link rel="stylesheet" type="text/css" href="_Home.css_/lightbox.min.css">
+        <!-- <script src="js/vendor/modernizr-2.6.2.min.js"></script>-->
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        <div class='warp'>
+            <div class='nav-li ce ce2'>
+                <div class='nav cle'>
+                    <ul class=''>
+                        <li>
+                            <a href="javascript:;" class='xz' id="navon1">基础信息</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" id="navon2">产品简介</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" id="navon3">种子信息</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" id="navon4">植物生长图片</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" id="navon5">肥料使用表</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" id="navon6">农药使用表</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" id="navon7">生长环境数据</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class='header' id='header' style='background:url(_Home.images_/vf_01.png) no-repeat center center;color:#fff' >
+                <a href="{:U('Home/Index/index')}">返回查询界面</a>
+                {$product['site_name']}{$product['pro_name']}产品溯源档案
+            </div>
+            <div class='main-li li1'>
+                <div class='jz'>
+                    <div class='hz hh'>
+                       <h3>基础信息</h3>
+                        <ul>
+                            <li><span>溯源码：</span>{$product['id']}</li>
+                            <li><span>产品名称：</span>{$product['pro_name']}</li>
+                            <li><span>产品类别：</span>{$product_tag['pro_type']}</li>
+                            <li><span>种植区域：</span>{$plant_areas['plant_area']}</li>
+                            <li><span>地块名称：</span>{$site_names['site_name']}</li>
+                            <li><span>种植年份：</span>{$product['plant_year']}</li>
+                            <li><span>承包人：</span>{$contractor['contractor_name']}</li>
+                            <li><span>手机号：</span>{$contractor['contractor_mobile']}</li>
+                        </ul>
+                        <a href="" class='rwm'><img  src="__CONTROLLER__/ewm?id={$id}" data-original="__CONTROLLER__/ewm?id={$id}"><span>扫描二维码即可下载</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class='main-li li2'>
+                <div class='jz'>
+                    <div class='hz hh cle'>
+                            <h3 style='color:#fff;'>产品简介</h3>
+                         <if condition="$product['pro_picture']">
+                            <div class='li2-l'><img class="img" src="/{$product['pro_picture']}"></div>
+                         </if>
+                            <div class='li2-c'>
+                                <ul>
+                                    <li class='clearfix'>
+                                        <h4>产品描述：</h4>
+                                        <div>{$product['pro_desc']}</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        <div class='li2-r' id='li2-r'>
+                            <if condition="$product['certificate'][0]"><a href="/{$product['certificate'][0]}" data-lightbox="example-1" rel="lightbox-tour"><img class="img"   src="/{$product['certificate'][0]}"></a></if>
+                            <if condition="$product['certificate'][1]"><a href="/{$product['certificate'][1]}" data-lightbox="example-1" rel="lightbox-tour"><img class="img"   src="/{$product['certificate'][1]}"></a></if>
+                            <if condition="$product['certificate'][2]"><a href="/{$product['certificate'][2]}" data-lightbox="example-1" rel="lightbox-tour"><img class="img"   src="/{$product['certificate'][2]}"></a></if>
+                            <if condition="$product['certificate'][3]"><a href="/{$product['certificate'][3]}" data-lightbox="example-1" rel="lightbox-tour"><img class="img"   src="/{$product['certificate'][3]}"></a></if>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class='main-li li3' >
+                <div class='jz'>
+                    <div class='hz hh'>
+                        <h3 style='color:#fff;'>种子信息</h3>
+                        <ul>
+                            <li><span>种子名称：</span>{$seed['name']}</li>
+                            <li><span>品牌：</span>{$brand[0]['pname']}</li>
+                            <li><span>生产商：</span>{$manufacturer[0]['sname']}</li>
+                            <li><span>销售商：</span>{$retailer[0]['username']}</li>
+                            <li><span>购买人：</span>{$product['contractor_name']}</li>
+                        </ul>
+                        <a href="" class='rwm'><img class="img"   data-original="/{$seed['picture']}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class='main-li li4'>
+                    <div class='jz'>
+                    <div class='hz hh'>
+                        <h3 style='color:#fff;'>植物生长图片</h3>
+                        <div class='li4-la'>
+                            <table>
+                                <tr>
+                                    <th>区域</th>
+                                    <th>设备类型</th>
+                                    <th>设备名称</th>
+                                    <th>设备编号</th>
+                                    <th>种植户</th>
+                                </tr>
+                                <volist name="product_plant_list" id="vo">
+                                    <if condition="$vo.pic eq ''">
+                                        <tr>
+                                            <td>{$vo.area}</td>
+                                            <td>{$vo.device_type}</td>
+                                            <td>{$vo.device_name}</td>
+                                            <td>{$vo.device_num}</td>
+                                            <td>{$vo.contractor_name}</td>
+                                        </tr>
+                                    </if>
+                                </volist>
+                            </table>
+                        </div>
+                        <div class='li4-lb' style='padding-top:50px;'>
+                            <div class='bd'>
+                                <ul>
+                                    <volist name="product_plant_pic" id="vo">
+                                        <if condition="$vo.pic">
+                                            <li>
+                                                <div><img class="img" src="/{$vo.pic}"></div>
+                                                <br>
+                                                <center style="color: #fff">{$stage.stage_name}</center>
+                                            </li>
+                                        </if>
+                                    </volist>
+                                </ul>
+                            </div>
+                            <div class='hd'>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class='main-li li5'>
+                <div class='jz'>
+                    <div class='hz hh'>
+                        <h3 style='color:#fff;'>肥料使用表</h3>
+                        <div>
+                            <table>
+                                <tr>
+                                    <th>施肥时间</th>
+                                    <th>时期</th>
+                                    <th>名称</th>
+                                    <th>品牌</th>
+                                    <th>种类</th>
+                                    <th>用量（千克/亩）</th>
+                                    <th>销售商</th>
+                                </tr>
+                                <volist name="product_manure_list" id="vo">
+                                    <tr>
+                                        <td>{$vo['manure_time']}</td>
+                                        <td>{$vo['period']}</td>
+                                        <td>{$vo.name}</td>
+                                        <td>{$vo.brand}</td>
+                                        <td>{$vo.kind}</td>
+                                        <td>{$vo['dosage']}</td>
+                                        <td>{$vo['retailer']}</td>
+                                    </tr>
+                                </volist>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='main-li li6'>
+                <div class='jz'>
+                    <div class='hz hh'>
+                        <h3 style='color:#fff;'>农药使用表</h3>
+                        <div>
+                            <table>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>时期</th>
+                                    <th>名称</th>
+                                    <th>品牌</th>
+                                    <th>用量（千克/亩）</th>
+                                    <th>销售商</th>
+                                </tr>
+                                <volist name="product_pesticide_list" id="vo">
+                                <tr>
+                                    <td>{$vo.pesticide_time}</td>
+                                    <td>{$vo.period}</td>
+                                    <td>{$vo.name}</td>
+                                    <td>{$vo.brand}</td>
+                                    <td>{$vo.dosage}</td>
+                                    <td>{$vo.retailer}</td>
+                                </tr>
+                                    </volist>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='main-li li7'>
+                <div class='jz'>
+                    <div class='hz hh'>
+                        <h3>生长环境数据</h3>
+                        <p>
+                            <a href="javascript:;" class='on'>空气温度</a>
+                            <a href="javascript:;">空气湿度</a>
+                            <a href="javascript:;">土壤温度</a>
+                            <a href="javascript:;">土壤湿度</a>
+                        </p>
+                        <div class='tb-ul'>
+                            <div class='tb-li on'>
+                                <div id='t1' style='height:400px;'></div>
+                            </div>
+                            <div class='tb-li'>
+                                <div id='t2' style='height:400px;width:900px;'></div>
+                            </div>
+                            <div class='tb-li'>
+                                <div id='t3' style='height:400px;width:900px;'></div>
+                            </div>
+                            <div class='tb-li'>
+                                <div id='t4' style='height:400px;width:900px;'></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script src="_Home.js_/vendor/jquery-1.9.0.min.js"></script>
+        <script src="_Home.js_/plugins.js"></script>
+        <script src="_Home.js_/main.js"></script>
+        <!--<script type="text/javascript" src='_Home.js_/lightbox.min.js'></script>-->
+        <script type="text/javascript">
+            jQuery(".li4-lb").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:4});
+            $('.li7 p a').click(function(){
+              var i = $(this).index();
+              $(this).addClass('on').siblings('').removeClass('on')
+              $('.tb-li').eq(i).addClass('on').siblings('.tb-li').removeClass('on');
+
+            })
+             $(function() {
+                $("img.img").lazyload({effect: "fadeIn"});
+            });
+           $(function(){    
+                var cubuk_seviye = $(document).scrollTop();
+                var header_yuksekligi = $('.header').outerHeight();
+
+                $(window).scroll(function() {
+                    var kaydirma_cubugu = $(document).scrollTop();
+
+                    if (kaydirma_cubugu > header_yuksekligi){$('.header').addClass('gizle');} 
+                    else {$('.header').removeClass('gizle');}
+
+                    if (kaydirma_cubugu > cubuk_seviye){$('.header').removeClass('sabit');} 
+                    else {$('.header').addClass('sabit');}                
+
+                    cubuk_seviye = $(document).scrollTop(); 
+                 });
+            });
+          
+        </script>
+         <script type="text/javascript">
+       
+        </script>
+        <script type="text/javascript">
+            var dom = document.getElementById("t1");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            option = {
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['最高温度','最低温度','平均温度']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        boundaryGap : false,
+                        data : [<if condition="$hjwd.shiqi neq 'THINKPHP'">"{$hjwd.shiqi}"<else/><volist name="hjwd.shiqi" id="vo">"{$vo}",</volist></if>]
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        axisLabel : {
+                            formatter: '{value} °C'
+                        }
+                    }
+                ],
+                series : [
+                    {
+                        name:'最高温度',
+                        type:'line',
+                        data:[<if condition="$hjwd.zuigao neq 'THINKPHP'">"{$hjwd.zuigao}"<else/><volist name="hjwd.zuigao" id="vo">{$vo},</volist></if>],
+                        
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均值'}
+                            ]
+                        }
+                    },
+                    {
+                        name:'最低温度',
+                        type:'line',
+                        data:[<if condition="$hjwd.zuidi neq 'THINKPHP'">"{$hjwd.zuidi}"<else/><volist name="hjwd.zuidi" id="vo">{$vo},</volist></if>],
+                        
+                        markLine : {
+                            data : [
+                                {type : 'average', name : '平均值'}
+                            ]
+                        }
+                    },
+                    {
+                        name:'平均温度',
+                        type:'line',
+                        data:[<if condition="$hjwd.pingjun neq 'THINKPHP'">"{$hjwd.pingjun}"<else/><volist name="hjwd.pingjun" id="vo">{$vo},</volist></if>],
+                        
+                        markLine : {
+                            data : [
+                                {type : 'average', name : '平均值'}
+                            ]
+                        }
+                    }
+                ]
+            };
+            myChart.setOption(option, true);
+        </script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById("t2");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            option = {
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['最高湿度','最低湿度','平均湿度']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        boundaryGap : false,
+                        data : [<if condition="$hjsd.shiqi neq 'THINKPHP'">"{$hjsd.shiqi}"<else/><volist name="hjsd.shiqi" id="vo">"{$vo}",</volist></if>]
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        axisLabel : {
+                            formatter: '{value} %'
+                        }
+                    }
+                ],
+                series : [
+                    {
+                        name:'最高湿度',
+                        type:'line',
+                        data:[<if condition="$hjsd.zuigao neq 'THINKPHP'">"{$hjsd.zuigao}"<else/><volist name="hjsd.zuigao" id="vo">{$vo},</volist></if>],
+                        
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均值'}
+                            ]
+                        }
+                    },
+                    {
+                        name:'最低湿度',
+                        type:'line',
+                        data:[<if condition="$hjsd.zuidi neq 'THINKPHP'">"{$hjsd.zuidi}"<else/><volist name="hjsd.zuidi" id="vo">{$vo},</volist></if>],
+                        
+                        markLine : {
+                            data : [
+                                {type : 'average', name : '平均值'}
+                            ]
+                        }
+                    },
+                    {
+                        name:'平均湿度',
+                        type:'line',
+                        data:[<if condition="$hjsd.pingjun neq 'THINKPHP'">"{$hjsd.pingjun}"<else/><volist name="hjsd.pingjun" id="vo">{$vo},</volist></if>],
+                        
+                        markLine : {
+                            data : [
+                                {type : 'average', name : '平均值'}
+                            ]
+                        }
+                    }
+                ]
+            };
+            myChart.setOption(option, true);
+        </script>
+        <script type="text/javascript">
+            var dom = document.getElementById("t3");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            option = {
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['土壤温度1','土壤温度2']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        boundaryGap : false,
+                        data : [<if condition="$trwd1.shiqi neq 'THINKPHP'">"{$trwd1.shiqi}"<else/><volist name="trwd1.shiqi" id="vo">"{$vo}",</volist></if>]
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        axisLabel : {
+                            formatter: '{value} °C'
+                        }
+                    }
+                ],
+                series : [
+                    {
+                        name:'土壤温度1',
+                        type:'line',
+                        data:[<if condition="$trwd1.pingjun neq 'THINKPHP'">{$trwd1.pingjun}<else/><volist name="trwd1.pingjun" id="vo">{$vo},</volist></if>],
+                        
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均值'}
+                            ]
+                        }
+                    },
+                    {
+                        name:'土壤温度2',
+                        type:'line',
+                        data:[<if condition="$trwd2.pingjun neq 'THINKPHP'">{$trwd2.pingjun}<else/><volist name="trwd.zuidi" id="vo">{$vo},</volist></if>],
+                        
+                        markLine : {
+                            data : [
+                                {type : 'average', name : '平均值'}
+                            ]
+                        }
+                    },
+                ]
+            };
+            myChart.setOption(option, true);
+        </script>
+        <script type="text/javascript">
+            var dom = document.getElementById("t4");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            option = {
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['土壤湿度1','土壤湿度2']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        boundaryGap : false,
+                        data : [<if condition="$trsd1.shiqi neq 'THINKPHP'">"{$trsd1.shiqi}"<else/><volist name="trsd1.shiqi" id="vo">"{$vo}",</volist></if>]
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        axisLabel : {
+                            formatter: '{value} %'
+                        }
+                    }
+                ],
+                series : [
+                    {
+                        name:'土地湿度1',
+                        type:'line',
+                        data:[<if condition="$trsd1.pingjun neq 'THINKPHP'">{$trsd1.pingjun}<else/><volist name="trsd1.pingjun" id="vo">{$vo},</volist></if>],
+                        
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均值'}
+                            ]
+                        }
+                    },
+                    {
+                        name:'土壤湿度2',
+                        type:'line',
+                        data:[<if condition="$trsd2.pingjun neq 'THINKPHP'">{$trsd2.pingjun}<else/><volist name="trsd2.pingjun" id="vo">{$vo},</volist></if>],
+                        
+                        markLine : {
+                            data : [
+                                {type : 'average', name : '平均值'}
+                            ]
+                        }
+                    },
+                ]
+            };
+            myChart.setOption(option, true);
+        </script>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    </body>
+</html>

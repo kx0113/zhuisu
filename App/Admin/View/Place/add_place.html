@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <if condition="$_GET['place_id']">
+                            <h5 class="location">编辑产地</h5>
+                            <else/>
+                            <h5 class="location">新建产地</h5>
+                        </if>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="{:U('Admin/User/index')}">用户列表</a></li>
+                                <li><a href="{:U('Admin/User/index',array('status'=>4))}">待审核用户列表</a></li>
+                                <li><a href="{:U('Admin/User/index',array('status'=>3))}">已删除用户列表</a></li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <div style="border: 1px solid #009999">
+                                <p style="padding: 13px;color: #009999">产地基本信息</p>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产地名称</label>
+                                <div class="col-sm-10">
+                                    <input id="place_name" name="place_name"  type="text" class="form-control" value="{$place_list.place_name}" <if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">农户名称</label>
+                                <div class="col-sm-10">
+                                    <input id="farmer_name" name="farmer_name"  type="text" class="form-control" value="{$place_list.farmer_name}" <if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">地区编码</label>
+                                <div class="col-sm-10">
+                                    <span class="form-control">{$place_list.region_code}</span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">联系方式</label>
+                                <div class="col-sm-10">
+                                    <input id="mobile" name="mobile"  type="text" class="form-control" value="{$place_list.mobile}" <if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                            </div>
+                            <br>
+                            <div style="border: 1px solid #36a3ff">
+                                <p style="padding: 13px;color: #36a3ff">产地详细信息</p>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产地类型</label>
+                                <div class="col-sm-10">
+                                    <input id="place_type" name="place_type"  type="text" class="form-control" value="{$place_list.place_type}" <if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                            <!--区域信息-->
+                            <!--<include file="Product:common_area" />-->
+                            <!--区域信息-->
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">地块地址</label>
+                                <div class="col-sm-10">
+                                    <input id="site_address" name="site_address"  type="text" class="form-control" value="{$place_list.site_address}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                                <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">负责人</label>
+                                <div class="col-sm-10">
+                                    <input id="principal" name="principal"  type="text" class="form-control" value="{$place_list.principal}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                                <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">联系电话</label>
+                                <div class="col-sm-10">
+                                    <input id="principal_mobile" name="principal_mobile"  type="text" class="form-control" value="{$place_list.principal_mobile}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                                <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产地面积(亩)</label>
+                                <div class="col-sm-10">
+                                    <input id="place_size" name="place_size"  type="text" class="form-control" value="{$place_list.place_size}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                                <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">种植方式</label>
+                                <div class="col-sm-10">
+                                    <input id="plant_mode" name="plant_mode"  type="text" class="form-control" value="{$place_list.plant_mode}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                                <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">土壤类型</label>
+                                <div class="col-sm-10">
+                                    <input id="soil_type" name="soil_type"  type="text" class="form-control" value="{$place_list.soil_type}"<if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                                <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">灌溉水源名称</label>
+                                <div class="col-sm-10">
+                                    <input id="irrigation_water" name="irrigation_water"  type="text" class="form-control" value="{$place_list.irrigation_water}" <if condition="$_GET['m'] eq 'look'">disabled</if>>
+                                </div>
+                            </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">周边环境描述</label>
+                                    <div class="col-sm-10">
+                                        <textarea style="height: 120px" id="environment_description" name="environment_description"  type="text" class="form-control" <if condition="$_GET['m'] eq 'look'">disabled</if>>{$place_list.environment_description}</textarea>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">备注</label>
+                                    <div class="col-sm-10">
+                                        <textarea style="height: 120px" id="remark" name="remark"  type="text" class="form-control" <if condition="$_GET['m'] eq 'look'">disabled</if>>{$place_list.remark}</textarea>
+                                    </div>
+                                </div>
+                                </div>
+                            <!--<div class="hr-line-dashed"></div>-->
+                            <!--<div class="form-group">-->
+                            <!--<label class="col-sm-2 control-label">上传营业执照</label>-->
+                            <!--<div class="col-md-4">-->
+                            <!--<input type="file" name="picture" style="width:350px;">-->
+                            <!--<if condition="$place_list.license neq ''">-->
+                            <!--<br>-->
+                            <!--<img src="{$place_list.license}" width="150px;">-->
+                            <!--</if>-->
+
+                            <!--</div>-->
+                            <!--</div>-->
+                            <div class="form-group">
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <if condition="$_GET['m'] neq 'look'"><button type="submit" class="btn btn-primary" onclick="T_submit();">提交</button></if>
+                                        <a class="back btn btn-white" type="submit">取消</a>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.place_name.value==''){
+            toastr.error("请填写产地名称！");
+            form.place_name.focus();
+            return false;
+        }  if(form.farmer_name.value==''){
+            toastr.error("请填写农户名称！");
+            form.farmer_name.focus();
+            return false;
+        }  if(form.mobile.value==''){
+            toastr.error("请填写联系方式！");
+            form.mobile.focus();
+            return false;
+        }
+        return true;
+    }
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

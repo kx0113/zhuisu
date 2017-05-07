@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5 class="location">新增/编辑-灌溉水质量</h5>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-user">
+                            <li><a href="{:U('Admin/Jdenvironment/worm_index',array('menu_id'=>$_GET['menu_id']))}">病虫害信息</a></li>
+                                <li><a href="{:U('Admin/Jdenvironment/air_index',array('menu_id'=>$_GET['menu_id']))}">空气质量</a></li>
+                                <li><a href="{:U('Admin/Jdenvironment/irrigation_index',array('menu_id'=>$_GET['menu_id']))}">灌溉水质量</a></li>
+                                <li><a href="{:U('Admin/Jdenvironment/residue_index',array('menu_id'=>$_GET['menu_id']))}">土壤农药残留量</a></li>
+                                <li><a href="{:U('Admin/Jdenvironment/soil_index',array('menu_id'=>$_GET['menu_id']))}">土壤质量</a></li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="id" name="id"  type="hidden" class="form-control" value="{$info2.id}">
+                            <div class="hr-line-dashed"></div>
+                             
+                            	<include file="Jdenvironment:commen" />
+                            	
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">pH值</label>
+                                <div class="col-md-4">
+                                    <input id="origin" name="ph"  type="text" class="form-control" value="{$info2.ph}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">氯化物（CL-）</label>
+                                <div class="col-md-4">
+                                    <input id="producers" name="cl"  type="text" class="form-control" value="{$info2.cl}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">总汞（THg）</label>
+                                <div class="col-md-4">
+                                    <input id="product_name" name="thg"  type="text" class="form-control" value="{$info2.thg}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">总镉（TCd）</label>
+                                <div class="col-md-4">
+                                    <input id="quantity" name="tcd"  type="text" class="form-control" value="{$info2.tcd}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">总砷（TAs）</label>
+                                <div class="col-md-4">
+                                    <input id="detection_type" name="tas"  type="text" class="form-control" value="{$info2.tas}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">总铅（TPb）</label>
+                                <div class="col-md-4">
+                                    <input id="detection_result" name="tpb"  type="text" class="form-control" value="{$info2.tpb}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">总铬（Cr6 ）</label>
+                                <div class="col-md-4">
+                                    <input id="marketing_agency" name="cr6"  type="text" class="form-control" value="{$info2.cr6}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">氰化物</label>
+                                <div class="col-md-4">
+                                    <input id="marketing_agency" name="cyanide"  type="text" class="form-control" value="{$info2.cyanide}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">氟化物（F-）</label>
+                                <div class="col-md-4">
+                                    <input id="marketing_agency" name="f"  type="text" class="form-control" value="{$info2.f}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">石油类</label>
+                                <div class="col-md-4">
+                                    <input id="marketing_agency" name="petroleum"  type="text" class="form-control" value="{$info2.petroleum}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">挥发酚</label>
+                                <div class="col-md-4">
+                                    <input id="marketing_agency" name="phenol"  type="text" class="form-control" value="{$info2.phenol}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">六价铬</label>
+                                <div class="col-md-4">
+                                    <input id="tel" name="sixcd"  type="text" class="form-control" value="{$info2.sixcd}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <!--<div class="form-group">-->
+                            <!--<label class="col-sm-2 control-label">上传图片</label>-->
+                            <!--<div class="col-md-4">-->
+                            <!--<input type="file" name="picture" style="width:350px;">-->
+                            <!--<if condition="$origin.picture neq ''">-->
+                            <!--<img src="{$origin.picture}" width="200px;">-->
+                            <!--</if>-->
+
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="hr-line-dashed"></div>-->
+                            <script src="_js_/plugins/layer/laydate/laydate.js"></script>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">检测时间</label>
+                                <div class="col-md-4">
+                                    <input name="test_time" value="{$info2.test_time}" id="test_name" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                    <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                    <label class="laydate-icon"></label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">检测评价</label>
+                                <div class="col-md-4">
+                                    <input id="agent" name="test_evaluate"  type="text" class="form-control" value="{$info2.test_evaluate}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+
+
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button type="submit" class="btn btn-primary" onclick="T_submit();">提交</button>
+                                    <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.number.value==''){
+            toastr.error("请填写产地编号！");
+            form.number.focus();
+            return false;
+        }   if(form.place_name.value==''){
+            toastr.error("请填写产地名称！");
+            form.place_name.focus();
+            return false;
+        }
+        if(form.test_name.value==''){
+            toastr.error("请选择检验时间！");
+            form.test_name.focus();
+            return false;
+        }
+        return true;
+    }
+    $('#number').blur(function (){
+        var place_id = $.trim($('#number').val());
+        $.ajax({
+            type : 'post',
+            url : '/index.php?m=Admin&c=Jdenvironment&a=irrigation_ajax&t='+Math.random(),
+            data : {place_id:place_id},
+            dataType : 'json',
+            success : function(res){
+                if(res.status == 1){
+                    $("#place_name").val(res.msg['place_name']);
+                }else{
+                    toastr.error(res.msg);
+                    return false;
+                    //verify();
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                alert('网络失败，请刷新页面后重试');
+            }
+        })
+    });
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

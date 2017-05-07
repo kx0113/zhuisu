@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+     <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5 class="location">新建承包人</h5>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="{:U('Admin/User/index')}">用户列表</a></li>
+                                <li><a href="{:U('Admin/User/index',array('status'=>4))}">待审核用户列表</a></li>
+                                <li><a href="{:U('Admin/User/index',array('status'=>3))}">已删除用户列表</a></li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="id" name="id"  type="hidden" class="form-control" value="{$contractor.id}">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">姓名</label>
+                                <div class="col-sm-10">
+                                    <input id="name" name="name"  type="text" class="form-control" value="{$contractor.name}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">性别</label>
+                                <div class="col-sm-10">
+                                    <label>
+                                        <input type="radio" name="sex" value="1" <if condition="$contractor['sex'] eq 1">checked</if> />男
+                                    </label>
+                                    &nbsp;&nbsp;
+                                    <label>
+                                        <input type="radio" name="sex" value="2" <if condition="$contractor['sex'] eq 2">checked</if>/>女
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">手机号</label>
+                                <div class="col-sm-10">
+                                    <input id="mobile" name="mobile"  type="text" class="form-control" value="{$contractor.mobile}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <!--区域信息-->
+                            <include file="Product:common_area" />
+                            <!--区域信息-->
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">承包面积</label>
+                                <div class="col-sm-10">
+                                    <input id="proportion" name="proportion"  type="text" class="form-control" value="{$contractor.proportion}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="hr-line-dashed"></div>
+                                <script src="_js_/plugins/layer/laydate/laydate.js"></script>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">开始时间：</label>
+                                    <div class="col-sm-10">
+                                        <input name="start_time" value="{$contractor.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                        <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                        <label class="laydate-icon"></label>
+                                    </div>
+                                </div>
+                            <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">结束时间：</label>
+                                    <div class="col-sm-10">
+                                        <input name="end_time" value="{$contractor.end_time}" id="end_time" class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                        <!--<input name="start_time" value="{$product.start_time}" id="start_time" class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">-->
+                                        <label class="laydate-icon"></label>
+                                    </div>
+                                </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button type="submit" class="btn btn-primary" onclick="T_submit();">提交</button>
+                                    <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.name.value==''){
+            toastr.error("请填写承包人名称！");
+            form.name.focus();
+            return false;
+        } if(form.mobile.value==''){
+            toastr.error("请填写手机号！");
+            form.mobile.focus();
+            return false;
+        }if(form.plant_area.value==''){
+            toastr.error("请选择区域！");
+            form.plant_area.focus();
+            return false;
+        }if(form.site_name.value==''){
+            toastr.error("请选择地块名称！");
+            form.site_name.focus();
+            return false;
+        }if(form.proportion.value==''){
+            toastr.error("请填写承包面积！");
+            form.proportion.focus();
+            return false;
+        }  if(form.start_time.value==''){
+            toastr.error("请填写开始时间！");
+            form.start_time.focus();
+            return false;
+        } if(form.end_time.value==''){
+            toastr.error("请填写结束时间！");
+            form.end_time.focus();
+            return false;
+        }
+        return true;
+    }
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

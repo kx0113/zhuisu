@@ -1,0 +1,97 @@
+
+
+
+<link href="_css_/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.ico">
+
+<link href="_css_/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+<!-- Data Tables -->
+<link href="_css_/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+<link href="_css_/animate.min.css" rel="stylesheet">
+<link href="_css_/style.min862f.css?v=4.1.0" rel="stylesheet">
+
+<script src="__js__/jquery-1.11.1.min.js?v=2.1.4"></script>
+<script src="__js__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__js__/autocomplete.js"></script>
+
+<!--弹出通知-->
+<script src="_js_/plugins/toastr/toastr.min.js"></script>
+<script src="_js_/plugins/jeditable/jquery.jeditable.js"></script>
+
+<!--弹出通知-->
+<link href="_css_/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        //点击刷新
+        $(".location").click(function(){
+            location.reload();
+        });
+        //点击后退
+        $(".back").click(function(){
+            history.back();
+        });
+    });
+    //删除通用函数调用
+    function switchs(tag,model,key,val,val_1,val_2){
+        if(tag == "common_delete"){
+            if (confirm("确定要删除吗？")){
+            }else{
+                return false;
+            }
+        }
+        $.ajax({
+            url:"{:U('Basic/switchs')}",
+            type:"POST",
+            dataType:"json",
+            data:"tag="+tag+"&model="+model+"&key="+key+"&val="+val+"&val_1="+val_1+"&val_2="+val_2,
+            success:function(res){
+                if(res.res == 'success'){
+                    toastr.success("删除成功！");
+                    setTimeout("location.reload()","2100");
+                }else{
+                    toastr.error("删除失败！");
+                }
+            }
+        });
+    }
+</script>
+<style>
+    .fl{float:left}
+    .fr{float:right}
+    .btn-primary {
+        color: #fff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        background-color: #006dcc;
+        background-image: -moz-linear-gradient(top, #08c, #04c);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#08c), to(#04c));
+        background-image: -webkit-linear-gradient(top, #08c, #04c);
+        background-image: -o-linear-gradient(top, #08c, #04c);
+        background-image: linear-gradient(to bottom, #08c, #04c);
+        background-repeat: repeat-x;
+        border-color: #04c #04c #002a80;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    }
+    .btn-danger {
+        color: #fff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        background-color: #da4f49;
+        background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+        background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+        background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+        background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
+        background-repeat: repeat-x;
+        border-color: #bd362f #bd362f #802420;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    }
+    .btn-info{color: #fff;background-color: #5bc0de;border-color: #46b8da;}
+    .btn-info:hover{color: #fff;background-color: #5bc0de;border-color: #46b8da;}
+</style>

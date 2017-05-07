@@ -1,0 +1,134 @@
+<div class="form-group">
+    <label class="col-sm-2 control-label">地块</label>
+    <div class="col-sm-10">
+        <div class="input-group">
+            <!--<select id="area" name="area" data-placeholder="请选择区域..." class="chosen-select" style="width:350px;" tabindex="2">-->
+            <!--<option value="">请选择区域</option>-->
+            <!--<volist name="area" id="vo">-->
+            <!--<option <if condition="$vo['id'] eq $product['area']"> selected="selected" </if> value="{$vo.id}">{$vo.area_name}</option>-->
+            <!--</volist>-->
+            <!--</select>-->
+
+            <select id='area_source' name='area' data-placeholder="请选择地块..." class="chosen-select" style="width:350px;" tabindex="2">
+               <option value="">请选择地块...</option></if>
+                <volist name="area" id="vo">
+                    <option <if condition="$vo['id'] eq $device_info[0]['area_id']"> selected="selected" </if> value="{$vo.id}">{$vo.area_name}</option>
+                </volist>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">设备名称</label>
+    <div class="col-sm-10">
+        <div class="input-group">
+            <!--<select id="device_typed" name="device_type" data-placeholder="请选择设备类型..." class="chosen-select" style="width:350px;" tabindex="2">-->
+            <!--<option value="">请选择设备类型</option>-->
+            <!--<volist name="manufacturer[0]['data']" id="vo">-->
+            <!--<option <if condition="$vo['tag_id'] eq $product['device_type']"> selected="selected" </if> value="{$vo.tag_id}">{$vo.name}</option>-->
+            <!--</volist>-->
+            <!--</select>-->
+            <select id="device_type" name="device_id" data-placeholder="请选择设备名称..." style="width:350px;height: 34px;border: 1px solid #CBD5DD;" tabindex="2">
+                <if condition="$device_info[0]['id']">
+                    <option <if condition="$device_info[0]['id'] eq $device_info[0]['id']"> selected="selected"  </if> value="{$device_info[0]['id']}">{$device_info[0]['device_name']}</option>
+                    <else />
+                    <option value="">请选择设备名称...</option>
+                </if>
+            </select>
+        </div>
+    </div>
+</div>
+<div id="device_names" class="form-group" style="display: none">
+    <div class="hr-line-dashed"></div>
+    <label class="col-sm-2 control-label">设备编号</label>
+    <div class="col-sm-10">
+        <div class="input-group">
+            <!--<select id="device_name9" name="device_name" data-placeholder="请选择设备名称..." class="chosen-select" style="width:350px;" tabindex="2">-->
+            <!--<option value="">请选择设备名称</option>-->
+            <!--<volist name="retailer[0]['data']" id="vo">-->
+            <!--<option <if condition="$vo['tag_id'] eq $product['device_name']"> selected="selected" </if> value="{$vo.tag_id}">{$vo.name}</option>-->
+            <!--</volist>-->
+            <!--</select>-->
+
+            <!--<select id="device_name"  data-placeholder="请选择设备编号..." style="width:350px;height: 34px;border: 1px solid #CBD5DD;" tabindex="2">-->
+                <!--<if condition="$device_info[0]['device_name']">-->
+                    <!--<option value="{$device_info[0]['device_name']}">{$device_info[0]['device_code']}</option>-->
+                    <!--<else />-->
+                    <!--<option>请选择设备编号...</option>-->
+                <!--</if>-->
+            <!--</select>-->
+                <input id="device_name" type="text" class="form-control" style="width:350px;" value="{$device_info[0]['device_code']}" disabled>
+        </div>
+    </div>
+</div>
+<!--<div class="hr-line-dashed"></div>-->
+<!--<div class="form-group">-->
+    <!--<label class="col-sm-2 control-label">设备编号</label>-->
+    <!--<div class="col-sm-10">-->
+        <!--<select id="device_num" data-placeholder="请选择设备编号..." style="width:350px;" tabindex="2">-->
+            <!--<if condition="$device_info[0]['device_code']"> <option value="{$device_info[0]['device_code']}">{$device_info[0]['device_code']}</option></if>-->
+        <!--</select>-->
+        <!--&lt;!&ndash;<input id="device_num" name="device_num"  type="text" class="form-control" value="{$product['device_num']}" disabled>&ndash;&gt;-->
+    <!--</div>-->
+<!--</div>-->
+<!--区域--->
+<script type="text/javascript">
+    $device_code = $("#device_name").val();
+    if($device_code){
+        $("#device_names").show();
+    }
+    $('#area_source').change(function(){
+        var area_val = $("#area_source").find("option:selected").val();
+        areaChange(area_val);
+    });
+    var area_val = $("#area_source").val();
+    if(area_val){
+        areaChange(area_val);
+    }
+    function areaChange(area_val){
+        if(area_val){
+            //当两个值都存在时开始提交数据
+            $.post("{:u('Admin/Product/step_area',array('m'=>area_val))}",
+                    {area_val:area_val},
+                    function(data) {
+//                        $("#device_type option").remove();
+                        var obj = jQuery.parseJSON(data);
+                        var t = obj.result.length;
+//                        var p1 ='<option>请选择设备名称...</option>';
+//                        $('#device_type').append(p1);
+                        for (var o = 0;o<t;o++){
+                            var p2 ='<option value='+obj.result[o].id+'>'+obj.result[o].device_name+'</option>';
+                            $('#device_type').append(p2);
+                        }
+                    }
+            );
+        }
+    }
+
+    $('#device_type').change(function(){
+        var device_type= $("#device_type").find("option:selected").val();
+        deviceChange(device_type);
+    });
+    function deviceChange(device_type){
+        if(device_type){
+            //当两个值都存在时开始提交数据
+            $.post("{:u('Admin/Product/step_area',array('m'=>device_type))}",
+                    {device_type:device_type},
+                    function(data) {
+                        $("#device_name option").remove();
+                        var obj = jQuery.parseJSON(data);
+                        var t = obj.result.length;
+                        for (var o = 0; o < t; o++) {
+//                            var p ='<option value='+obj.result[o].id+'>'+obj.result[o].device_code+'</option>';
+//                            $('#device_name').append(p);
+                            var device_name = obj.result[o].device_code;
+                            $("#device_name").val(device_name);
+                            $("#device_names").show();
+                        }
+                    }
+            );
+        }
+    }
+</script>
+<!--区域--->

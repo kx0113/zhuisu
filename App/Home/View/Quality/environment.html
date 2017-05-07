@@ -1,0 +1,173 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta name="Generator" content="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>质量追溯-加工过程</title>
+    <meta http-equiv="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <link rel="stylesheet" type="text/css" href="_Home.css_/public.css"/>
+    <link rel="stylesheet" type="text/css" href="_Home.css_/index.css"/>
+	<script type="text/javascript" src="_Home.js_/jquery-1.7.2.js"></script>
+
+</head>
+<body>
+<div id="page" class="showpage">
+    <div>
+        <header id="header">
+            <span href="javascript:void(0)" class="logo">质量追溯-溯源码{$sid}</span>
+        </header>
+		<section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>空气质量详情
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div id="scroll_promotion">
+
+                    <ul>
+                    <volist name="air_info" id="vo">
+                        <li>
+                            <dl>
+                            <dd>产地编号：{$vo.place_id}</dd>
+                            <dd>产地名称：{$vo.place_name}</dd>
+                            <dd>总悬浮颗粒物：{$vo.total_particulate}</dd>
+                            <dd>二氧化硫（SO2）日均（标准状态）：{$vo.so2_day}</dd>
+                            <dd>二氧化硫（SO2）1h均（标准状态：{$vo.so2_hour}</dd>
+                            <dd>氮氧化合物：{$vo.compound}</dd>
+                            <dd>氟化物(F-)：{$vo.f}</dd>
+                            <dd>铅(Pb)(标准状态)：{$vo.pb}</dd>
+                            <dd>PM10：{$vo.pb}</dd>
+                            <dd>检测机构：{$vo.test_firm}</dd>
+                            <dd>检测时间：{$vo.test_time}</dd>
+                            <dd>检测评价：{$vo.test_evaluate}</dd>
+                            </dl>
+                        </li>
+                        
+                    </volist>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>产地土壤质量记录
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div id="scroll_promotion">
+
+                    <ul>
+                        <volist name="soil_info" id="vo">
+                            <li>
+                                <dl>
+                                    <dd>产地编号：{$vo.place_id}</dd>
+                                    <dd>产地名称：{$vo.place_name}</dd>
+                                    <dd>土壤ph值：{$vo.soil_ph}</dd>
+                                    <dd>阳离子交换量：{$vo.cation}</dd>
+                                    <dd>镉（Cd）：{$vo.cd}</dd>
+                                    <dd>汞（Hg）：{$vo.hg}</dd>
+                                    <dd>砷（As）：{$vo.as}</dd>
+                                    <dd>铅（Pb）：{$vo.pb}</dd>
+                                    <dd>铬（Cr）：{$vo.cr}</dd>
+                                    <dd>（Zn）：{$vo.zn}</dd>
+                                    <dd>镍（Ni）：{$vo.ni}</dd>
+                                    <dd>铜（Cu）：{$vo.cu}</dd>
+                                    <dd>检测机构：{$vo.test_firm}</dd>
+                                    <dd>检测时间：{$vo.test_time}</dd>
+                                    <dd>检测评价：{$vo.test_evaluate}</dd>
+                                </dl>
+                            </li>
+                            
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>产地土壤农药残留量记录
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div id="scroll_promotion">
+
+                    <ul>
+                        <volist name="residue_info" id="vo">
+                            <li>
+                                <dl>
+                                    <dd>产地编号：{$vo.place_id}</dd>
+                                    <dd>产地名称：{$vo.place_name}</dd>
+                                    <dd>豆磺隆：{$vo.chlorimuron}</dd>
+                                    <dd>普施特：{$vo.imazethapyr}</dd>
+                                    <dd>氧乐果：{$vo.omethoate}</dd>
+                                    <dd>丙草胺：{$vo.pretilachlor}</dd>
+                                    <dd>丁草胺：{$vo.butachlor}</dd>
+                                    <dd>莠去津：{$vo.atrazine}</dd>
+                                    <dd>检测机构：{$vo.test_firm}</dd>
+                                    <dd>检测时间：{$vo.test_time}</dd>
+                                    <dd>检测评价：{$vo.test_evaluate}</dd>
+                                </dl>
+                            </li>
+                            
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>产地灌溉水质量记录
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div id="scroll_promotion">
+
+                    <ul>
+                        <volist name="irrigation_info" id="vo">
+                            <li>
+                                <dl>
+                                    <dd>产地编号：{$vo.place_id}</dd>
+                                    <dd>产地名称：{$vo.place_name}</dd>
+                                    <dd>pH值：{$vo.ph}</dd>
+                                    <dd>氯化物（CL-）{$vo.cl}</dd>
+                                    <dd>总汞：{$vo.thg}</dd>
+                                    <dd>总镉：{$vo.tcd}</dd>
+                                    <dd>总砷：{$vo.tas}</dd>
+                                    <dd>总铅：{$vo.tpb}</dd>
+                                    <dd>总铬：{$vo.cr6}</dd>
+                                    <dd>氰化物：{$vo.cyanide}</dd>
+                                    <dd>氟化物：{$vo.f}</dd>
+                                    <dd>石油类：{$vo.petroleum}</dd>
+                                    <dd>挥发酚：{$vo.phenol}</dd>
+                                    <dd>六价铬：{$vo.sixcd}</dd>
+                                    <dd>检测机构：{$vo.test_firm}</dd>
+                                    <dd>检测时间：{$vo.test_time}</dd>
+                                    <dd>检测评价：{$vo.test_evaluate}</dd>
+                                </dl>
+                            </li>
+                            
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+ 
+
+<!--         <include file="Public/footer"/> -->
+        <script>
+            function goTop(){
+                $('html,body').animate({'scrollTop':0},600);
+            }
+        </script>
+       <a href="javascript:goTop();" class="gotop"><img src="_Home.images_/topup.png"></a>
+    </div>
+
+</div>
+</body>
+</html>

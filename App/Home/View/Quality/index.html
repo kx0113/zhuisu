@@ -1,0 +1,86 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta name="Generator" content="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>质量追溯</title>
+    <meta http-equiv="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <link rel="stylesheet" type="text/css" href="_Home.css_/public.css"/>
+    <link rel="stylesheet" type="text/css" href="_Home.css_/index.css"/>
+
+</head>
+<body>
+<div id="page" class="showpage">
+    <div>
+        <header id="header">
+            <span href="javascript:void(0)" class="logo">企业信息</span>
+        </header>
+		<section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>企业详情
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div id="scroll_promotion">
+
+                    <ul>
+                        <li>
+                                <dl >
+                                	<dd>企业名称：
+                                    {$com_info.name}</dd>
+                                    <dd>企业编号：
+                                    {$com_info.number}</dd>
+                                    <dd>联系人：
+                                    {$com_info.contacts}</dd>
+                                    <dd>联系电话：
+                                    {$com_info.mobile}</dd>
+                                    <dd>企业地址：
+                                    {$com_info.area}</dd>
+                                    <dd>企业简介：
+                                    {$com_info.info}</dd>
+                                    <dd>营业执照：
+                                    <sapn style="width:70%;"><img src="{$com_info.license}"</sapn></dd>
+                                </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="entry-list clearfix">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="{:U('Quality/environment',array('sid'=>$sid))}">
+                            <span>环境信息</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{:U('Quality/product',array('sid'=>$sid))}">
+                            <span>生产档案</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{:U('Quality/process',array('sid'=>$sid,'id'=>$id))}">
+                            <span>加工过程</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{:U('Quality/test_index',array('sid'=>$sid))}">
+                            <span>检验检测</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="floor_body2" >
+            <h2>————&nbsp;质量追溯&nbsp;————</h2>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

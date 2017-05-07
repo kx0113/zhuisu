@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>全息溯源档案查询平台</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!--<link rel="stylesheet" href="_css_/main.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="_css_/css.css">-->
+    <script src="__js__/jquery-1.11.1.min.js?v=2.1.4"></script>
+    <!-- <script src="js/vendor/modernizr-2.6.2.min.js"></script>-->
+
+</head>
+<body style='background:#fff;padding-bottom:20px;'>
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+<div class='warp'>
+
+    <!--<div class='d-top'>同江市全息溯源档案查询平台</div>-->
+    <br>
+    <br>
+    <br>
+    <div class='cx'>
+        <div style="width:500px" class='cx-left'>
+            <img class="img" src="_Home.images_/vs_03.png">
+        </div>
+        <div class='cx-right'>
+            <div>
+                <!--<a href="{:U('Basic/wxpay')}">微信支付</a>-->
+                <!--<form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">-->
+                    <!--<h3>溯源档案查询</h3>-->
+                    <!--<input id="id" name="id" type='text' placeholder='请输入溯源码'>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="col-sm-4 col-sm-offset-2">-->
+                            <!--<a href="{:U('Home/Index/info')}" aria-expanded="true" target="view_window"> 基础信息</a>-->
+                            <!--<button type="submit" class="btn btn-primary" onclick="T_submit(2);">提交</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</form>-->
+                <form method="get" action="{:U('Quality/index')}" id="search-form">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <select type="search" name="key_type" class="form-control" style="width: 138px;height:30px;float: left;margin: 5px;">
+                        <option value="1" <if condition="$key_type==1">selected</if> >溯源码</option>
+                        <option value="2" <if condition="$key_type==2">selected</if> >企业</option>
+                        <option value="3" <if condition="$key_type==3">selected</if> >产品</option>
+                    </select>
+
+                    <input id="producers" name="key" type="search"  style="float: left;width: 200px;margin: 5px;height:30px;"   value="{$key}"  placeholder="请输入标题关键字">
+                    <br>
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-w-m btn-info" style="margin: 5px;line-height:40px;height:40px;">搜索</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.id.value==''){
+            alert("请输入溯源码！");
+            form.id.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+<!--<script src="js/vendor/jquery-1.9.0.min.js"></script>-->
+<!--<script src="js/plugins.js"></script>-->
+<!--<script src="js/main.js"></script>-->
+<script type="text/javascript">
+    $(function() {
+        $("img.img").lazyload({effect: "fadeIn"});
+    });
+</script>
+<style>
+    .cx{
+        width: 100%;
+        margin: 0 auto;
+        height: 397px;
+        background-color: #fff;
+    }
+    .cx .cx-left{
+        float: left;
+        width: 754px;
+        height: 397px;
+    }
+    .cx .cx-left img{
+
+    }
+    .cx .cx-right{
+        float: left;
+        width: 446px;
+        height: 360px;
+        padding: 18px 0;
+    }
+    .cx-right div{
+        border-left:1px solid #ddd;
+        height: 360px;
+    }
+    .cx-right h3{
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 55px;
+        padding-top: 40px;
+    }
+    .cx-right input{
+        font-size: 14px;
+        border: 1px solid #ddd;
+        height: 60px;
+        padding-left: 10px;
+        width: 338px;
+        margin-left: 48px;
+        line-height: 60px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    .cx-right button{
+        font-size: 16px;
+        color: #fff;
+        height: 60px;
+        padding-left: 10px;
+        width: 350px;
+        margin-left: 48px;
+        line-height: 60px;
+        border-radius: 5px;
+        background-color: #66b534;
+        border: none;
+        font-weight: 600;
+    }
+    .d-top{
+        height: 60px;
+        line-height: 60px;
+        background-color: #109b48;
+        font-size: 24px;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+</style>
+</body>
+</html>

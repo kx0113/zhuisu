@@ -1,0 +1,59 @@
+<!--左侧导航开始-->
+<nav style="background: #e6e6e6;border-radius:0;border-right:solid 5px #18a026;overflow: auto" class="navbar-default navbar-static-side" role="navigation">
+    <div class="nav-close"><i class="fa fa-times-circle"></i>
+    </div>
+    <div class="sidebar-collapse">
+        <ul style="position: relative" class="nav" id="side-menu">
+            <br>
+            <volist name="menus" id="vo">
+                <if condition="$vo.parent_id eq 0">
+                <li>
+                    <a class="a1" style="font-size: 14px; font-weight: 100;" href="#"><i class="{$vo.icon}"></i> <span class="nav-label">{$vo.name}</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <volist name="menus" id="vo1"  >
+                            <eq name="vo1.parent_id" value="$vo.id">
+                                <li>
+                                   <a  style="font-weight: 100;" class="J_menuItem" href="{:u($vo1['path'],array('val1'=>$vo1['val1'],'val2'=>$vo1['val2'],'menu_id'=>$vo1['id']))}">{$vo1.name}
+                                       <if condition="$vo1.icon eq 1"><span class="fa arrow"></span></if>
+                                   </a>
+                                <!--3级菜单输出-----开始-->
+                                    <ul class="nav nav-third-level">
+                                        <volist name="menus" id="vo2">
+                                            <eq name="vo2.parent_id" value="$vo1.id">
+                                                <li style="margin: 0">
+                                                    <a <if condition="$_GET['menu_id'] eq $vo2['id']"> style="font-weight: 100;color:#00c006"
+                                                        <else/> style="font-weight: 100;color: #000;" </if>
+                                                        class="J_menuItem" href="{:u($vo2['path'],array('val1'=>$vo2['val1'],'val2'=>$vo2['val2'],'menu_id'=>$vo2['id']))}">{$vo2.name}
+                                                    </a>
+                                                </li>
+                                            </eq>
+                                        </volist>
+                                    </ul>
+                                <!--3级菜单输出-----结束-->
+                                </li>
+                            </eq>
+                        </volist>
+                    </ul>
+                </li>
+                </if>
+            </volist>
+            <br>
+            <br>
+            <br>
+            <br>
+        </ul>
+    </div>
+</nav>
+<!--左侧导航结束-->
+<script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $("p").css("background-color","yellow");
+        });
+    });
+</script>
+<style>
+    .nav>li.active{background:#f3f3f3;border:none}
+    .nav>li.active .a1{color: #000000}
+    .nav>li{border-top: 1px solid #fff;  border-bottom: 1px solid #fff;}
+</style>

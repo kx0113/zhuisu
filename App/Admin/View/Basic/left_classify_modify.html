@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <include file="Public:head" />
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5 class="location">更多编辑</h5>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="{:U('Admin/User/index')}">用户列表</a></li>
+                                <li><a href="{:U('Admin/User/index',array('status'=>4))}">待审核用户列表</a></li>
+                                <li><a href="{:U('Admin/User/index',array('status'=>3))}">已删除用户列表</a></li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">菜单名称</label>
+                                <div class="col-sm-10">
+                                    <input id="name" name="name"  type="text" class="form-control" value="{$menu_find['name']}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">修改一级菜单</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <select id="parent_id" name="parent_id" onchange="stype();" data-placeholder="所属分类..." class="chosen-select" style="width:350px;" tabindex="2">
+                                            <option value="oo">请选择所属分类</option>
+                                            <option value="0" >------ 新建分类 ------</option>
+                                            <volist name="parent_id" id="vo">
+                                                <option <if condition="$vo.id eq $menu_find['parent_id']">selected="selected"</if> value="{$vo.id}">{$vo.name}</option>
+                                            </volist>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">链接地址</label>
+                                <div class="col-sm-10">
+                                    <input id="path" name="path"  type="text" class="form-control" value="{$menu_find['path']}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">图标</label>
+                                <div class="col-sm-10">
+                                    <input id="icon" name="icon"  type="text" class="form-control" value="{$menu_find['icon']}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">参数1</label>
+                                <div class="col-sm-10">
+                                    <input id="val1" name="val1"  type="text" class="form-control" value="{$menu_find['val1']}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">参数2</label>
+                                <div class="col-sm-10">
+                                    <input id="val2" name="val2" type="text" class="form-control" value="{$menu_find['val2']}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">排序</label>
+                                <div class="col-sm-10">
+                                    <input id="sort" name="sort"  type="text" class="form-control" value="{$menu_find['sort']}">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button type="submit" class="btn btn-primary" onclick="T_submit();">提交</button>
+                                    <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function beforeSubmit(form){
+        if(form.name.value==''){
+            toastr.error("请输入菜单名称！");
+            form.name.focus();
+            return false;
+        }if(form.parent_id.value==''){
+            toastr.error("请选择所属分类！");
+            form.parent_id.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+</html>

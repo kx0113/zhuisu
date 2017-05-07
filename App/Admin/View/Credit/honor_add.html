@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--下拉框-->
+    <link href="_css_/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--单选框-->
+    <link href="_css_/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+     <include file="Public:head" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#szmm").show();
+//            $(".ljsz").click(function(){
+//                $("#szmm").show();
+//            });
+//            $(".zxsz").click(function(){
+//                $("#szmm").hide();
+//            });
+        });
+    </script>
+    <style type="text/css">
+        .auto_hidden {
+            width:204px;border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            border-left: 1px solid #333;
+            border-right: 1px solid #333;
+            position:absolute;
+            display:none;
+        }
+        .auto_show {
+            width:204px;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            border-left: 1px solid #333;
+            border-right: 1px solid #333;
+            position:absolute;
+            z-index:9999; /* 设置对象的层叠顺序 */
+            display:block;
+        }
+        .auto_onmouseover{
+            color:#ffffff;
+            background-color:highlight;
+            width:100%;
+        }
+        .auto_onmouseout{
+            color:#000000;
+            width:100%;
+            background-color:#ffffff;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5 class="location">新增/编辑-信用数据采集</h5>
+                        <div class="ibox-tools">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+
+
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" onSubmit="return beforeSubmit(this);">
+                            <input id="id" name="id"  type="hidden" class="form-control" value="{$info.credit_id}">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">企业名称</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <select id="company_id" name="company_id" data-placeholder="请选择企业名称..." class="chosen-select" style="width:350px;" tabindex="2">
+                                            <option value="">请选择企业名称...</option>
+                                            <volist name="Company_list" id="vo">
+                                                    <option <if condition="$vo['company_id'] eq $credit['company_id']"> selected="selected" </if> value="{$vo.company_id}">{$vo.name}</option>
+                                                </if>
+                                            </volist>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">信用等级</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <select id="rank" name="rank" data-placeholder="请选择信用等级..." class="chosen-select" style="width:350px;" tabindex="2">
+                                            <option value="">请选择信用等级</option>
+                                            <option <if condition="$credit['rank'] eq 1"> selected="selected" </if> value="1">1</option>
+                                            <option <if condition="$credit['rank'] eq 2"> selected="selected" </if> value="2">2</option>
+                                            <option <if condition="$credit['rank'] eq 3"> selected="selected" </if> value="3">3</option>
+                                            <option <if condition="$credit['rank'] eq 4"> selected="selected" </if> value="4">4</option>
+                                            <option <if condition="$credit['rank'] eq 5"> selected="selected" </if> value="5">5</option>
+                                            <option <if condition="$credit['rank'] eq 6"> selected="selected" </if> value="6">6</option>
+                                            <option <if condition="$credit['rank'] eq 7"> selected="selected" </if> value="7">7</option>
+                                            <option <if condition="$credit['rank'] eq 8"> selected="selected" </if> value="8">8</option>
+                                            <option <if condition="$credit['rank'] eq 9"> selected="selected" </if> value="9">9</option>
+                                            <option <if condition="$credit['rank'] eq 10"> selected="selected" </if> value="10">10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button type="submit" class="btn btn-primary" onclick="T_submit();">提交</button>
+                                    <a class="back btn btn-white" type="submit">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+     function beforeSubmit(form){
+        if(form.company_id.value==''){
+            toastr.error("请选择企业名称！");
+            form.company_id.focus();
+            return false;
+        }if(form.rank.value==''){
+            toastr.error("请选择信用等级！");
+            form.rank.focus();
+            return false;
+        }
+        return true;
+    }
+</script>;
+<!--下拉框-->
+<script src="_js_/plugins/chosen/chosen.jquery.js"></script>
+<script src="_js_/demo/form-advanced-demo.min.js"></script>
+<!--内页收起 隐藏-->
+<script src="_js_/content.min.js?v=1.0.0"></script>
+<!--前台分页-->
+<script src="_js_/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="_js_/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+</body>
+</html>

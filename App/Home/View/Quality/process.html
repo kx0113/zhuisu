@@ -1,0 +1,233 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta name="Generator" content="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>质量追溯-加工过程</title>
+    <meta http-equiv="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <link rel="stylesheet" type="text/css" href="_Home.css_/public.css"/>
+    <link rel="stylesheet" type="text/css" href="_Home.css_/index.css"/>
+	<script type="text/javascript" src="_Home.js_/jquery-1.7.2.js"></script>
+
+</head>
+<body>
+<div id="page" class="showpage">
+    <div>
+        <header id="header">
+            <span href="javascript:void(0)" class="logo">质量追溯-溯源码{$sid}</span>
+        </header>
+        <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>企业详情
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div id="scroll_promotion">
+
+                    <ul>
+                        <li>
+                                <dl >
+                                	<dd>企业名称：
+                                    {$com_info.name}</dd>
+                                    <dd>企业编号：
+                                    {$com_info.number}</dd>
+                                    <dd>联系人：
+                                    {$com_info.contacts}</dd>
+                                    <dd>联系电话：
+                                    {$com_info.mobile}</dd>
+                                    <dd>企业地址：
+                                    {$com_info.area}</dd>
+                                    <dd>企业简介：
+                                    {$com_info.info}</dd>
+                                </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+		<section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>采购详情
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div id="scroll_promotion">
+
+                    <ul>
+                        <li>
+                                <dl >
+                                	<dd>采收批次：
+                                    {$cg_info.cspc}</dd>
+                                    <dd>采购日期：
+                                    {$cg_info.cg_date}</dd>
+                                    <dd>采购单位：
+                                    {$cg_info.cg_unit}</dd>
+                                    <dd>采购地区：
+                                    {$cg_info.cg_place}</dd>
+                                    <dd>农户：
+                                    {$cg_info.farmer}</dd>
+                                    <dd>联系电话：
+                                    {$cg_info.tel}</dd>
+                                    <dd>采购种类：
+                                    {$cg_info.type}</dd>
+                                    <dd>采购数量：
+                                    {$cg_info.number}</dd>
+                                </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+		<section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>环境检查信息详情
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div id="scroll_promotion">
+
+                    <ul>
+                    <volist name="hj_info" id="vo">
+                        <li>
+                                <dl >
+                                	<dd>加工批次：
+                                    {$vo.jgpc}</dd>
+                                    <dd>厂房地址：
+                                    {$vo.cf_address}</dd>
+                                    <dd>消毒工具：
+                                    {$vo.tools}</dd>
+                                    <dd>检查情况：
+                                    {$vo.base_status}</dd>
+                                    <dd>检查日期：
+                                    {$vo.date}</dd>
+                                </dl>
+                        </li>
+                        
+                    </volist>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>人员工具消毒记录详情
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div id="scroll_promotion">
+
+                    <ul>
+                    <volist name="tl_info" id="vo">
+                        <li>
+                                <dl >
+                                	<dd>加工批次：
+                                    {$vo.jgpc}</dd>
+                                    <dd>人手：
+                                    {$vo.number}</dd>
+                                    <dd>消毒项目：
+                                    {$vo.project}</dd>
+                                    <dd>工作前：
+                                    {$vo.before_work}</dd>
+                                    <dd>工作后：
+                                    {$vo.after_work}</dd>
+                                    <dd>措施：
+                                    {$vo.measure}</dd>
+                                    <dd>检查人：
+                                    {$vo.checker}</dd>
+                                    <dd>审核人：
+                                    {$vo.audit}</dd>
+                                    <dd>生产日期：
+                                    {$vo.product_time}</dd>
+                                    <dd>审核日期：
+                                    {$vo.check_time}</dd>
+                                </dl>
+                        </li>
+                        
+                    </volist>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>产品加工记录详情
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div id="scroll_promotion">
+
+                    <ul>
+                    <volist name="pr_info" id="vo">
+                        <li>
+                                <dl >
+                                	<dd>加工批次：
+                                    {$vo.jgpc}</dd>
+                                    <dd>处理时间：
+                                    {$vo.pdate}</dd>
+                                    <dd>市场名称：
+                                    {$vo.pname}</dd>
+                                    <dd>产品种类：
+                                    {$vo.ptype}</dd>
+                                    <dd>价格：
+                                    {$vo.price}</dd>
+                                </dl>
+                        </li>
+                        
+                    </volist>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="index_floor_lou">
+            <div class="floor_body">
+                <h2>
+                    <em></em>销售记录详情
+                    <!--<div class="geng"><a href="{:U('Goods/search',array('q'=>'促销'))}">更多</a><span></span></div>-->
+                </h2>
+                <div id="scroll_promotion">
+
+                    <ul>
+                        <li>
+                                <dl >
+                                	<dd>出厂批次：
+                                    {$sale_info.ccpc}</dd>
+                                    <dd>加工批次：
+                                    {$sale_info.jgpc}</dd>
+                                    <dd>产品名称：
+                                    {$sale_info.pro_name}</dd>
+                                    <dd>销售地区：
+                                    {$sale_info.sale_toarea}</dd>
+                                    <dd>销售数量：
+                                    {$sale_info.sale_num}</dd>
+                                    <dd>销售单价：
+                                    {$sale_info.sale_price}</dd>
+                                    <dd>销售日期：
+                                    {$sale_info.sale_date}</dd>
+                                </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+ 
+
+<!--         <include file="Public/footer"/> -->
+        <script>
+            function goTop(){
+                $('html,body').animate({'scrollTop':0},600);
+            }
+        </script>
+       <a href="javascript:goTop();" class="gotop"><img src="_Home.images_/topup.png"></a>
+    </div>
+
+</div>
+</body>
+</html>
